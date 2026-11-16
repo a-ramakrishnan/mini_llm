@@ -19,7 +19,7 @@ in the spirit of [MiniMind](https://github.com/jingyaogong/minimind), laid out d
 | 2 | [Turn text into training batches: datasets, mixing, tokens, windows](days/day_02_data_and_tokens/) | Available |
 | 3 | [Pretrain: the training loop, and a small model trained on Colab](days/day_03_pretraining/) | Available |
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](days/day_04_more_data/) | Available |
-| 5 | Instruction tuning: a chat format, a loss mask, a model that answers | Planned |
+| 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](days/day_05_instruction_tuning/) | Available |
 | 6 | Preference tuning: DPO against repetition | Planned |
 | 7 | Evals: held-out loss, generation quality, chat quality | Planned |
 | 8 | Benchmarks: five standard tasks, reference models, the report | Planned |

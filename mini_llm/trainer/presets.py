@@ -30,3 +30,12 @@ STAGE2 = {
     # as it was run: 30,500 -> 152,600 steps, 500M -> 2.5B tokens seen, about 20 tokens per parameter
     "full": {"recipe": "stage2", "max_iters": 152600, "snapshot_every": 10000},
 }
+
+# Stage 3, instruction tuning: how many smol-smoltalk conversations, and how long. One pass over the data.
+SFT = {
+    "smoke": dict(limit=2000, steps=40, batch_size=8, eval_every=20),
+    # the mini path: 100,000 conversations packed for a 256-token context
+    "mini": dict(limit=100000, epochs=1.0, batch_size=32, lr=2e-4, eval_every=250),
+    # as it was run: every conversation (409K kept), 11,284 updates, 19 min on an A100
+    "full": dict(limit=None, epochs=1.0, batch_size=32, lr=2e-4, eval_every=500),
+}

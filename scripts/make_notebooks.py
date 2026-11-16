@@ -243,6 +243,80 @@ Keep the stage 2 folder on Drive: **Day 5 turns this model into one that answers
 ]
 
 
+NOTEBOOKS["days/day_05_instruction_tuning/day_05_instruction_tuning.ipynb"] = [
+    md("""
+# Day 5: Instruction tuning
+
+The pretrained model continues text. Ask it a question and it writes more questions, or an article. Today it reads
+conversations and learns to answer.
+
+This notebook runs [`scripts/train_sft.py`](https://github.com/a-ramakrishnan/mini_llm/blob/main/scripts/train_sft.py).
+It needs Day 4's run on your Google Drive (`mini_llm/runs/<preset>-stage2`).
+"""),
+    *setup(),
+    code("""
+BASE = f"{WORK}/runs/{PRESET}-stage2"
+RUN = f"{WORK}/runs/{PRESET}-sft"
+assert os.path.exists(f"{BASE}/best_model_params.pt"), "Run Day 4 first: this tunes its model"
+"""),
+    md("## 1. Before: the base model, asked a question"),
+    code("""
+!python scripts/chat.py --complete "User: What is the water cycle?\n\nAssistant:" --model "{BASE}" --preset greedy --max-tokens 80
+"""),
+    md("""
+## 2. The chat format and the loss mask
+
+Conversations are written as plain text, so GPT-2's tokenizer needs no new tokens. The loss counts only the
+assistant's tokens and the `<|endoftext|>` that ends each answer.
+"""),
+    code("""
+!python days/day_05_instruction_tuning/show_mask.py
+"""),
+    md("""
+## 3. The data
+
+[smol-smoltalk](https://huggingface.co/datasets/HuggingFaceTB/smol-smoltalk): conversations written for small
+models. Each is packed whole into a window of the model's context; one that is too long is cut after the last
+answer that fits.
+"""),
+    code("""
+!python scripts/train_sft.py --preset {PRESET} --base "{BASE}" --prepare-only
+"""),
+    md("""
+## 4. Tune
+
+One pass over the conversations. The peak learning rate is 2e-4, a sixth of pretraining's: the model already knows
+the language and only has to learn a new shape for its output. Every `eval_every` updates the loss on held-out
+conversations is measured, on the answers only, and the best weights are kept.
+"""),
+    code("""
+!python scripts/train_sft.py --preset {PRESET} --base "{BASE}" --out "{RUN}"
+"""),
+    md("## 5. The held-out answer loss"),
+    code("""
+import json, matplotlib.pyplot as plt
+sft = json.load(open(f"{RUN}/model_config.json"))["sft"]
+train, test = sft["history"]["train"], sft["history"]["test"]
+plt.figure(figsize=(7, 4))
+plt.plot([t[0] for t in train], [t[1] for t in train], alpha=0.4, label="train (one batch)")
+plt.plot([t[0] for t in test], [t[1] for t in test], marker="o", label="held-out answers")
+plt.xlabel("update"); plt.ylabel("loss"); plt.legend(); plt.grid(alpha=0.3)
+plt.title(f"held-out answer loss {sft['base_test_loss']:.3f} -> {sft['best_test_loss']:.3f}")
+plt.show()
+"""),
+    md("## 6. After: it answers, and stops"),
+    code("""
+!python scripts/chat.py "What is the water cycle?" --model "{RUN}"
+!python scripts/chat.py "Give me three tips for staying focused while studying." --model "{RUN}"
+"""),
+    md("""
+Look at the answers closely. They have the right shape, and they tend to repeat themselves. Greedy answers from the
+shipped model at this stage repeat 12.4% of their 4-token runs, and 30% of them never end.
+**Day 6 fixes that with preference tuning.**
+"""),
+]
+
+
 def main():
     for path, cells in NOTEBOOKS.items():
         nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"provenance": [], "gpuType": "T4"},
