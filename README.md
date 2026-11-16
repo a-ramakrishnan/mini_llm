@@ -17,7 +17,7 @@ in the spirit of [MiniMind](https://github.com/jingyaogong/minimind), laid out d
 | 0 | [Set up, get the weights, make the model write](days/day_00_setup/) | Available |
 | 1 | [Read the model: every layer, every parameter, one forward pass by hand](days/day_01_the_model/) | Available |
 | 2 | [Turn text into training batches: datasets, mixing, tokens, windows](days/day_02_data_and_tokens/) | Available |
-| 3 | Pretrain: the training loop, and a small model trained on your own machine | Planned |
+| 3 | [Pretrain: the training loop, and a small model trained on Colab](days/day_03_pretraining/) | Available |
 | 4 | Scale the data five times: resume, re-warm, keep the held-out set held out | Planned |
 | 5 | Instruction tuning: a chat format, a loss mask, a model that answers | Planned |
 | 6 | Preference tuning: DPO against repetition | Planned |
