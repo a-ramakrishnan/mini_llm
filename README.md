@@ -14,8 +14,8 @@ in the spirit of [MiniMind](https://github.com/jingyaogong/minimind), laid out d
 
 | Day | Do this | Status |
 |---|---|---|
-| 0 | Set up, get the weights, make the model write | In progress |
-| 1 | Read the model: every layer, every parameter, one forward pass by hand | In progress |
+| 0 | [Set up, get the weights, make the model write](days/day_00_setup/) | Available |
+| 1 | [Read the model: every layer, every parameter, one forward pass by hand](days/day_01_the_model/) | Available |
 | 2 | Turn text into training batches: datasets, mixing, tokens, windows | Planned |
 | 3 | Pretrain: the training loop, and a small model trained on your own machine | Planned |
 | 4 | Scale the data five times: resume, re-warm, keep the held-out set held out | Planned |
@@ -29,6 +29,18 @@ in the spirit of [MiniMind](https://github.com/jingyaogong/minimind), laid out d
 | 12 | A server: an OpenAI-compatible API, streaming, request state, a scheduler | Planned |
 | 13 | A serving engine: continuous batching, KV-cache management, prefix caching, load tests | Planned |
 | 14 | Ship: the front end, the weights on Hugging Face, the write-up | Planned |
+
+## Quick start
+
+```bash
+git clone https://github.com/a-ramakrishnan/mini_llm.git
+cd mini_llm
+pip install -r requirements.txt
+python3 scripts/link_weights.py ../tinystories-ARM-model/models    # until the weights are on the Hugging Face Hub
+python3 scripts/chat.py "What is the water cycle?"
+```
+
+[Day 0](days/day_00_setup/) has the details.
 
 ## The model
 
