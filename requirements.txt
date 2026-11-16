@@ -1,0 +1,9 @@
+torch
+tiktoken
+numpy
+tqdm
+datasets
+fastapi
+uvicorn
+transformers
+safetensors
