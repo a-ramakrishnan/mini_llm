@@ -20,7 +20,7 @@ in the spirit of [MiniMind](https://github.com/jingyaogong/minimind), laid out d
 | 3 | [Pretrain: the training loop, and a small model trained on Colab](days/day_03_pretraining/) | Available |
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](days/day_04_more_data/) | Available |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](days/day_05_instruction_tuning/) | Available |
-| 6 | Preference tuning: DPO against repetition | Planned |
+| 6 | [Preference tuning: DPO against repetition](days/day_06_preference_tuning/) | Available |
 | 7 | Evals: held-out loss, generation quality, chat quality | Planned |
 | 8 | Benchmarks: five standard tasks, reference models, the report | Planned |
 | 9 | Inference by hand: prefill, decode, the KV cache | Planned |

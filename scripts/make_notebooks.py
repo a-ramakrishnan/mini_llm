@@ -317,6 +317,90 @@ shipped model at this stage repeat 12.4% of their 4-token runs, and 30% of them 
 ]
 
 
+NOTEBOOKS["days/day_06_preference_tuning/day_06_preference_tuning.ipynb"] = [
+    md("""
+# Day 6: Preference tuning
+
+Yesterday's model answers, but its greedy answers repeat themselves and often never end. Today it is shown pairs of
+answers to the same question, one better than the other, and learns to prefer the better kind.
+
+This notebook runs [`scripts/train_dpo.py`](https://github.com/a-ramakrishnan/mini_llm/blob/main/scripts/train_dpo.py).
+It needs Day 5's run on your Google Drive (`mini_llm/runs/<preset>-sft`).
+"""),
+    *setup(),
+    code("""
+SFT = f"{WORK}/runs/{PRESET}-sft"
+RUN = f"{WORK}/runs/{PRESET}-dpo"
+PAIRS = f"{WORK}/data/dpo-pairs-{PRESET}.jsonl"     # on Drive: making the pairs is the slow part
+assert os.path.exists(f"{SFT}/best_model_params.pt"), "Run Day 5 first: this tunes its model"
+"""),
+    md("""
+## 1. Make the pairs
+
+For each question, two answers:
+
+- **chosen:** the reference answer from smol-smoltalk. Only questions with a short reference answer are used, so the
+  chosen answer always ends.
+- **rejected:** the model's own greedy answer to the same question, loops and all.
+
+Nobody labels anything. The file is appended to as it goes, so an interrupted run carries on.
+"""),
+    code("""
+!python scripts/train_dpo.py --preset {PRESET} --model "{SFT}" --pairs "{PAIRS}" --out "{RUN}" --only pairs
+"""),
+    code("""
+import json
+from mini_llm.tokenizer import get_tokenizer
+enc = get_tokenizer()
+pairs = [json.loads(l) for l in open(PAIRS)]
+p = max(pairs[:200], key=lambda p: p["rejected_rep4"])
+print(f"{len(pairs):,} pairs; {sum(not p['rejected_ended'] for p in pairs) / len(pairs):.0%} of the rejected answers never end\n")
+print("QUESTION:", p["question"], "\n\nCHOSEN:", p["chosen"], "\n\nREJECTED:", enc.decode(p["rejected_ids"]).strip())
+"""),
+    md("""
+## 2. Train
+
+DPO raises the probability of the chosen answer and lowers the rejected one's, both measured against a **frozen copy
+of the starting model**:
+
+`loss = -log sigmoid( beta x [ (log p(chosen) - log p_ref(chosen)) - (log p(rejected) - log p_ref(rejected)) ] )`
+
+- At the start the model equals its frozen copy, so the bracket is 0 and the loss is log 2 = 0.693.
+- The learning rate is 2e-6, a hundredth of instruction tuning's: a nudge, not a retraining.
+- A small likelihood term on the chosen answer keeps DPO from lowering both answers' probability.
+"""),
+    code("""
+!python scripts/train_dpo.py --preset {PRESET} --model "{SFT}" --pairs "{PAIRS}" --out "{RUN}" --only train
+"""),
+    md("""
+## 3. Measure, on questions training never saw
+
+Both models answer the held-out questions greedily: how much they repeat, how many answers end by themselves, and the
+loss on the reference answers (did the model pay for it in answer quality?).
+"""),
+    code("""
+!python scripts/train_dpo.py --preset {PRESET} --model "{SFT}" --pairs "{PAIRS}" --out "{RUN}" --only eval
+"""),
+    code("""
+import pandas as pd
+r = json.load(open(f"{RUN}/dpo_eval.json"))["results"]
+pd.DataFrame({k: {"repeated 4-token runs": f"{v['repeated_4grams']:.1%}", "answers that end": f"{v['ended']:.0%}",
+                  "mean length (tokens)": v["mean_length"], "loss on reference answers": v["reference_loss"]}
+              for k, v in r.items()})
+"""),
+    md("## 4. The same questions, before and after"),
+    code("""
+for run in (SFT, RUN):
+    print("=" * 20, os.path.basename(run))
+    !python scripts/chat.py "What is the difference between weather and climate?" --model "{run}"
+"""),
+    md("""
+That is the last training stage. `mini_llm/runs/<preset>-dpo` on your Drive is the finished chat model:
+`best_model_params.pt` and `model_config.json`. Days 7 and 8 measure it.
+"""),
+]
+
+
 def main():
     for path, cells in NOTEBOOKS.items():
         nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"provenance": [], "gpuType": "T4"},

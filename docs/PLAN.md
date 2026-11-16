@@ -40,7 +40,7 @@ pipeline, every stage a script); the day-by-day shape follows
 | 3 | [Pretrain: the training loop, and a small model trained on Colab](#day-3-pretraining) | [Available](../days/day_03_pretraining/); notebook not yet run on Colab |
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](#day-4-more-data) | [Available](../days/day_04_more_data/); notebook not yet run on Colab |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](#day-5-instruction-tuning) | [Available](../days/day_05_instruction_tuning/); notebook not yet run on Colab |
-| 6 | [Preference tuning: DPO against repetition](#day-6-preference-tuning) | Planned |
+| 6 | [Preference tuning: DPO against repetition](#day-6-preference-tuning) | [Available](../days/day_06_preference_tuning/); notebook not yet run on Colab |
 | 7 | [Evals: held-out loss, generation quality, chat quality](#day-7-evals) | Planned |
 | 8 | [Benchmarks: five standard tasks, reference models, the report](#day-8-benchmarks) | Planned |
 | 9 | [Inference by hand: prefill, decode, the KV cache](#day-9-inference-by-hand) | Planned |

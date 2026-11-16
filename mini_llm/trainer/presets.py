@@ -39,3 +39,11 @@ SFT = {
     # as it was run: every conversation (409K kept), 11,284 updates, 19 min on an A100
     "full": dict(limit=None, epochs=1.0, batch_size=32, lr=2e-4, eval_every=500),
 }
+
+# Stage 4, preference tuning (DPO): how many question/answer pairs, how many are held out, and how long.
+DPO = {
+    "smoke": dict(n=24, held_out=8, epochs=1, batch_pairs=2),
+    "mini": dict(n=1000, held_out=100, epochs=2, batch_pairs=4),
+    # as it was run: 2,000 questions (1,891 pairs kept for training, 100 held out), 946 updates, 19 min on a Mac
+    "full": dict(n=2000, held_out=100, epochs=2, batch_pairs=4),
+}
