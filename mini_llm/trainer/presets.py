@@ -20,3 +20,13 @@ PRESETS = {
              "train": dict(max_iters=30500, batch_size=32, warmup_steps=1000, eval_interval=1000, eval_iters=100,
                            compile=True)},
 }
+
+# Stage 2: the same model and run, continued to a later step on a larger recipe. `max_iters` is the new end of the
+# schedule, the steps of stage 1 included.
+STAGE2 = {
+    "smoke": {"recipe": "mini-more", "max_iters": 400},
+    # the mini path: 6,000 -> 15,000 steps, 49M -> 123M tokens seen
+    "mini": {"recipe": "mini-more", "max_iters": 15000},
+    # as it was run: 30,500 -> 152,600 steps, 500M -> 2.5B tokens seen, about 20 tokens per parameter
+    "full": {"recipe": "stage2", "max_iters": 152600, "snapshot_every": 10000},
+}
