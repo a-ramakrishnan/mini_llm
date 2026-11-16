@@ -36,7 +36,7 @@ pipeline, every stage a script); the day-by-day shape follows
 |---|---|---|
 | 0 | [Set up, get the weights, make the model write](#day-0-set-up) | [Available](../days/day_00_setup/) |
 | 1 | [Read the model: every layer, every parameter, one forward pass by hand](#day-1-the-model) | [Available](../days/day_01_the_model/), front-end page to come |
-| 2 | [Turn text into training batches: datasets, mixing, tokens, windows](#day-2-data-and-tokens) | Planned |
+| 2 | [Turn text into training batches: datasets, mixing, tokens, windows](#day-2-data-and-tokens) | [Available](../days/day_02_data_and_tokens/), front-end page to come |
 | 3 | [Pretrain: the training loop, and a small model trained on your own machine](#day-3-pretraining) | Planned |
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](#day-4-more-data) | Planned |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](#day-5-instruction-tuning) | Planned |
