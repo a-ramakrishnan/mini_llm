@@ -1,0 +1,53 @@
+[
+ {
+  "model": "mini-llm-base",
+  "is_chat": false,
+  "fineweb_loss": 3.2957,
+  "tinystories_loss": 2.7507,
+  "wikitext_loss": 5.0468,
+  "shakespeare_loss": 5.4461,
+  "greedy_repetition": 0.5481,
+  "sampled_repetition": 0.0103,
+  "tokens_per_sec": 50.4,
+  "ttft_ms": 45.8,
+  "chat_repetition": null,
+  "chat_ended": null,
+  "chat_reference_loss": null,
+  "instructions": 0.2,
+  "facts": 0.275
+ },
+ {
+  "model": "mini-llm-chat-sft",
+  "is_chat": true,
+  "fineweb_loss": 4.2645,
+  "tinystories_loss": 3.1815,
+  "wikitext_loss": 6.5422,
+  "shakespeare_loss": 6.1276,
+  "greedy_repetition": 0.3286,
+  "sampled_repetition": 0.0,
+  "tokens_per_sec": 57.3,
+  "ttft_ms": 36.6,
+  "chat_repetition": 0.161,
+  "chat_ended": 0.73,
+  "chat_reference_loss": 1.3102,
+  "instructions": 0.4,
+  "facts": 0.475
+ },
+ {
+  "model": "mini-llm-chat",
+  "is_chat": true,
+  "fineweb_loss": 4.2739,
+  "tinystories_loss": 3.2623,
+  "wikitext_loss": 6.5379,
+  "shakespeare_loss": 6.1377,
+  "greedy_repetition": 0.2562,
+  "sampled_repetition": 0.0,
+  "tokens_per_sec": 61.2,
+  "ttft_ms": 26.9,
+  "chat_repetition": 0.129,
+  "chat_ended": 0.78,
+  "chat_reference_loss": 1.3734,
+  "instructions": 0.267,
+  "facts": 0.5
+ }
+]

@@ -13,11 +13,11 @@ build/
 dist/
 
 # weights and data are never committed: they live on the Hugging Face Hub or in a local folder
-weights/
-data/
+/weights/
+/data/
 *.pt
 *.pth
 *.bin
 *.safetensors
 *.zip
-runs/
+/runs/

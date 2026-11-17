@@ -87,16 +87,20 @@ not remove the failure.
 
 ## The full run, as it was done
 
-| | Instruction-tuned | After DPO |
+| On 100 questions no training stage has seen | Instruction-tuned | After DPO |
 |---|---|---|
-| Greedy repetition on 100 held-out questions | 12.4% | **6.5%** |
-| Answers that end by themselves | 70% | **86%** |
-| Loss on the reference answers | **1.156** | 1.196 |
+| Greedy repetition | 16.1% | **12.9%** |
+| Answers that end by themselves | 73% | **78%** |
+| Loss on the reference answers | **1.310** | 1.373 |
 | Benchmark average | 38.5 | 38.4 |
 
 1,891 training pairs, 946 updates of 4 pairs, learning rate 2e-6, 19 minutes on a Mac. Before training, the model
-found the reference answer more likely than its own greedy answer on 2% of held-out pairs; after, on 99%. The price
-is in the third row: the reference answers themselves became slightly less likely.
+found the reference answer more likely than its own greedy answer on 2% of DPO's held-out pairs; after, on 99%. The
+price is in the third row: the reference answers themselves became slightly less likely.
+
+The source project first reported this as 12.4% → 6.5% repetition and 70% → 86% of answers ending. Those figures
+came from a question set that overlapped DPO's training pairs. [Day 7](../day_07_evals/) reproduces them and shows
+what happens as the questions get cleaner.
 
 ## Checked
 

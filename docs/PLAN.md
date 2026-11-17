@@ -41,7 +41,7 @@ pipeline, every stage a script); the day-by-day shape follows
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](#day-4-more-data) | [Available](../days/day_04_more_data/); notebook not yet run on Colab |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](#day-5-instruction-tuning) | [Available](../days/day_05_instruction_tuning/); notebook not yet run on Colab |
 | 6 | [Preference tuning: DPO against repetition](#day-6-preference-tuning) | [Available](../days/day_06_preference_tuning/); notebook not yet run on Colab |
-| 7 | [Evals: held-out loss, generation quality, chat quality](#day-7-evals) | Planned |
+| 7 | [Evals: held-out loss, generation quality, chat quality](#day-7-evals) | [Available](../days/day_07_evals/), front-end page to come |
 | 8 | [Benchmarks: five standard tasks, reference models, the report](#day-8-benchmarks) | Planned |
 | 9 | [Inference by hand: prefill, decode, the KV cache](#day-9-inference-by-hand) | Planned |
 | 10 | [Sampling: temperature, top-k, top-p, penalties, search, stopping](#day-10-sampling) | Planned |
@@ -89,7 +89,7 @@ input and output embeddings, the GPT-2 tokenizer. English only.**
 | 1. Pretrain | 3 | 500M tokens: Mini FineWeb-Edu *small* + five Cosmopedia subsets | Colab L4, 4 h 20 min | held-out web text loss 3.549 |
 | 2. Continued pretrain | 4 | 2.5B tokens: Mini FineWeb-Edu *full* + the same Cosmopedia subsets, held-out documents removed | L4 then A100, four sessions | 3.296 (GPT-2 small 3.401) |
 | 3. Instruction tuning | 5 | smol-smoltalk conversations, 11,284 steps, loss on the assistant's tokens only | A100, 19 min | held-out answer loss 2.316 → 1.390 |
-| 4. Preference tuning (DPO) | 6 | 1,891 pairs: the reference answer preferred to the model's own greedy answer | Mac (MPS), 19 min | greedy repetition 12.4% → 6.5%; answers that end 70% → 86% |
+| 4. Preference tuning (DPO) | 6 | 1,891 pairs: the reference answer preferred to the model's own greedy answer | Mac (MPS), 19 min | greedy repetition on unseen questions 16.1% → 12.9%; answers that end 73% → 78% |
 
 ### How it scores
 
@@ -215,7 +215,8 @@ falls.
 - The problem measured: greedy answers repeat themselves and do not end.
 - Pairs for free: the reference answer is *chosen*, the model's own greedy answer is *rejected*.
 - The DPO loss against a frozen copy of the starting model, and the small likelihood term that keeps it stable.
-- Held-out evaluation: repetition 12.4% → 6.5%, answers that end 70% → 86%.
+- Evaluation on unseen questions: repetition 16.1% → 12.9%, answers that end 73% → 78% (Day 7 explains why the
+  first reported figures, 12.4% → 6.5%, were too good).
 
 **Done when:** DPO on the mini path's chat model lowers repetition on held-out questions.
 

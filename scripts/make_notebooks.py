@@ -311,7 +311,7 @@ plt.show()
 """),
     md("""
 Look at the answers closely. They have the right shape, and they tend to repeat themselves. Greedy answers from the
-shipped model at this stage repeat 12.4% of their 4-token runs, and 30% of them never end.
+shipped model at this stage repeat 16% of their 4-token runs, and about a quarter of them never end.
 **Day 6 fixes that with preference tuning.**
 """),
 ]

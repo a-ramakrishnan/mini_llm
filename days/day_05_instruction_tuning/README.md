@@ -69,7 +69,7 @@ stop anywhere. Conversations are packed whole; one that is too long is cut after
 | Schedule | 11,284 updates × 32 windows, one pass; peak learning rate 2e-4, 200 warmup updates |
 | Hardware | Colab A100, 19 minutes |
 | Held-out answer loss | 2.316 → **1.390** |
-| Greedy answers on 100 held-out questions | 12.4% of 4-token runs repeated; 70% end by themselves |
+| Greedy answers on 100 unseen questions | 16.1% of 4-token runs repeated; 73% end by themselves |
 | Benchmark average | 42.3 → 38.5 |
 
 The last row is the cost. The tuned model is better at answering and worse at the multiple-choice benchmarks, which
