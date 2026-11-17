@@ -89,3 +89,18 @@ def test_fit_to_context_drops_the_oldest_turns():
     kept, ids = fit_to_context(msgs, enc, block_size=512, reserve=160)
     assert len(ids) + 160 <= 512
     assert kept[0]["role"] == "system" and kept[-1]["content"] == "The last question" and len(kept) < len(msgs)
+
+
+def test_safetensors_round_trip(tmp_path):
+    # a checkpoint written as safetensors (the tied output layer stored once) loads to the same model
+    from mini_llm import checkpoint
+    model = tiny()
+    checkpoint.write_safetensors(model.state_dict(), str(tmp_path / checkpoint.SAFETENSORS_FILE))
+    checkpoint.save_config(str(tmp_path), model.config, {"chat": True})
+    from safetensors.torch import load_file
+    assert checkpoint.TIED not in load_file(str(tmp_path / checkpoint.SAFETENSORS_FILE))
+    loaded, info, _ = checkpoint.load(str(tmp_path), "cpu")
+    assert info["chat"] and loaded.lm_head.weight is loaded.transformer.wte.weight       # still tied
+    ids = torch.tensor([[5, 17, 42, 3]])
+    with torch.no_grad():
+        assert torch.equal(model(ids, all_logits=True)[0], loaded(ids, all_logits=True)[0])

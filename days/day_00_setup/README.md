@@ -20,14 +20,20 @@ cd mini_llm
 pip install -r requirements.txt
 ```
 
-**Get the weights.** Each checkpoint is a folder with `best_model_params.pt` (494 MB) and `model_config.json`, looked
-up by name under `./weights` (or `$MINI_LLM_WEIGHTS`). They go on the Hugging Face Hub on Day 14. Until then they come
-from a local [tinystories-ARM-model](https://github.com/a-ramakrishnan/tinystories-ARM-model) library:
+**Get the weights.** Each checkpoint is a folder with `model.safetensors` (494 MB) and `model_config.json`, looked
+up by name under `./weights` (or `$MINI_LLM_WEIGHTS`). Each one has its own repo on the Hugging Face Hub
+([base](https://huggingface.co/aramkris/mini-llm-base), [chat-sft](https://huggingface.co/aramkris/mini-llm-chat-sft),
+[chat](https://huggingface.co/aramkris/mini-llm-chat)):
 
 ```bash
-python3 scripts/link_weights.py ../tinystories-ARM-model/models
+python3 scripts/download_weights.py --all          # or name one: mini-llm-base, mini-llm-chat-sft, mini-llm-chat
 python3 scripts/chat.py --list
 ```
+
+Safetensors holds only tensors, so loading it runs no code (a `.pt` file is a pickle). The output layer shares its
+weights with the token embeddings, so the file stores that matrix once and `mini_llm/checkpoint.py` ties it back on
+load. If you have a local [tinystories-ARM-model](https://github.com/a-ramakrishnan/tinystories-ARM-model) library,
+`python3 scripts/link_weights.py ../tinystories-ARM-model/models` links its `.pt` checkpoints instead; both formats load.
 
 | Name | Stage | What it is |
 |---|---|---|

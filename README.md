@@ -62,14 +62,16 @@ flowchart LR
 git clone https://github.com/a-ramakrishnan/mini_llm.git
 cd mini_llm
 pip install -r requirements.txt
-python3 scripts/link_weights.py ../tinystories-ARM-model/models    # until the weights are on the Hugging Face Hub
+python3 scripts/download_weights.py --all                           # 3 × 494 MB from the Hugging Face Hub
 python3 scripts/chat.py "What is the water cycle?"
 python3 scripts/chat.py --complete "The water cycle is the process by which"
 python3 scripts/chat.py                                            # a conversation
 ```
 
-The weights are not public yet: they go on the Hugging Face Hub on Day 20. Until then they come from a local
-[tinystories-ARM-model](https://github.com/a-ramakrishnan/tinystories-ARM-model) library.
+Each checkpoint has its own repo on the Hub, with a model card:
+[mini-llm-base](https://huggingface.co/aramkris/mini-llm-base),
+[mini-llm-chat-sft](https://huggingface.co/aramkris/mini-llm-chat-sft) and
+[mini-llm-chat](https://huggingface.co/aramkris/mini-llm-chat). Without `--all` it fetches only `mini-llm-chat`.
 [Day 0](days/day_00_setup/) has the details.
 
 </details>
