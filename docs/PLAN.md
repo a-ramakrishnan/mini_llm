@@ -1,9 +1,9 @@
 # The plan
 
-A language model from first principles in fifteen days: Day 0 to Day 14. Each day is one part. It has one thing to
+A language model from first principles in twenty-one days: Day 0 to Day 20. Each day is one part. It has one thing to
 do, a folder with a README and code you run, and a check that says the day is done.
 
-*Last updated: 16 November 2026.*
+*Last updated: 17 November 2026.*
 
 ```text
 set up
@@ -17,9 +17,15 @@ set up
   → benchmarks
   → inference by hand
   → sampling
-  → faster and smaller
+  → measuring
+  → faster
+  → smaller
   → a server
   → a serving engine
+  → load tests
+  → structured output
+  → other runtimes
+  → fine-tuning with Axolotl
   → ship
 ```
 
@@ -27,7 +33,7 @@ The model already exists: it was built in
 [tinystories-ARM-model](https://github.com/a-ramakrishnan/tinystories-ARM-model), where 57 models were trained and
 compared. This repo takes the best one and lays out how it was made, how it is measured and how it is served, in the
 order you would learn it. The set-up follows [MiniMind](https://github.com/jingyaogong/minimind) (one model, one
-pipeline, every stage a script); the day-by-day shape follows
+pipeline, every stage a script); the day-by-day shape, and the weight given to inference, follow
 [Inference Engineering From First Principles](https://github.com/navaneethkrishnansuresh/Inference-Engineering).
 
 ## The days
@@ -45,14 +51,18 @@ pipeline, every stage a script); the day-by-day shape follows
 | 8 | [Benchmarks: five standard tasks, reference models, the report](#day-8-benchmarks) | Planned |
 | 9 | [Inference by hand: prefill, decode, the KV cache](#day-9-inference-by-hand) | Planned |
 | 10 | [Sampling: temperature, top-k, top-p, penalties, search, stopping](#day-10-sampling) | Planned |
-| 11 | [Faster and smaller: batching, quantization, speculative decoding](#day-11-faster-and-smaller) | Planned |
-| 12 | [A server: an OpenAI-compatible API, streaming, request state, a scheduler](#day-12-a-server) | Planned |
-| 13 | [A serving engine: continuous batching, KV-cache management, prefix caching, load tests](#day-13-a-serving-engine) | Planned |
-| 14 | [Ship: the front end, the weights on Hugging Face, the write-up](#day-14-ship) | Planned |
+| 11 | [Measure it: time to first token, latency, throughput, memory, and where the time goes](#day-11-measure-it) | Planned |
+| 12 | [Faster: precision, compilation, batching, speculative decoding](#day-12-faster) | Planned |
+| 13 | [Smaller: quantization, and what each bit costs in quality](#day-13-smaller) | Planned |
+| 14 | [A server: an OpenAI-compatible API, streaming, request state, a scheduler](#day-14-a-server) | Planned |
+| 15 | [A serving engine: continuous batching, KV-cache memory, prefix caching](#day-15-a-serving-engine) | Planned |
+| 16 | [Load tests: latency percentiles and throughput as traffic rises](#day-16-load-tests) | Planned |
+| 17 | [Structured output: constrained decoding that cannot produce invalid JSON](#day-17-structured-output) | Planned |
+| 18 | [Other runtimes: transformers, ONNX Runtime, MLX](#day-18-other-runtimes) | Planned |
+| 19 | [Fine-tune it with Axolotl: LoRA from a YAML file](#day-19-fine-tune-with-axolotl) | Planned |
+| 20 | [Ship: the front end, the weights on Hugging Face, the write-up](#day-20-ship) | Planned |
 
-Days are numbered in the order you learn them. They are built in a different order, because the weights already
-exist: Days 0–1 first, then evals and inference (7–13), then the training days (2–6), then Day 14. The Status column
-says what is available.
+Days are numbered in the order you learn them. The Status column says what is available.
 
 ## What every day contains
 
@@ -67,7 +77,7 @@ days/day_09_inference_by_hand/
   end read them from there.
 - **Training runs on Google Colab.** Days 3 to 6 each have a notebook with an *Open in Colab* badge; runs are saved to
   Google Drive and one day continues from the day before.
-- **Every day adds its page to the front end** (`web/`), so the site grows with the days and Day 14 only finishes it.
+- **Every day adds its page to the front end** (`web/`), so the site grows with the days and Day 20 only finishes it.
 
 ## Where we start from
 
@@ -115,8 +125,10 @@ base loops (55% repeated 4-token runs) and sampled text does not (1%).
 | Tokenizer | own BPE, 6,400 tokens, chat/tool/think tokens | GPT-2 BPE, 50,257 tokens, no special chat tokens |
 | Chat format | ChatML-style template | plain `User:` / `Assistant:` text |
 | Stages | pretrain, SFT, LoRA, DPO, PPO/GRPO, distillation, tool use, thinking | pretrain (two stages), SFT, DPO |
-| Format | native `.pth` + `transformers` folder | native `.pt` + JSON (a `transformers` export comes on Day 14) |
-| Serving | CLI, Streamlit, OpenAI-compatible API, ollama / vllm / llama.cpp | built here on Days 12–13 |
+| Format | native `.pth` + `transformers` folder | native `.pt` + JSON (a `transformers` export comes on Day 18) |
+| Serving | CLI, Streamlit, OpenAI-compatible API, ollama / vllm / llama.cpp | built here on Days 14–16: a server, a batching engine, load tests |
+| Inference | a `generate` call and exports | ten days: every idea built, measured and checked for the same output |
+| Fine-tuning by others | a LoRA script in the repo | Axolotl configs (Day 19) |
 | Language | mostly Chinese | English |
 
 ---
@@ -127,9 +139,9 @@ base loops (55% repeated 4-token runs) and sampled text does not (1%).
 sentence, the chat model answers a question.
 
 - The repo layout and what each folder is for.
-- Where the weights come from: a local folder now, the Hugging Face Hub after Day 14.
+- Where the weights come from: a local folder now, the Hugging Face Hub after Day 20.
 - `scripts/chat.py`: text completion and chat in the terminal, streaming, with tokens per second.
-- The map of the fourteen days that follow.
+- The map of the days that follow.
 
 **Done when:** `python3 scripts/chat.py "What is the water cycle?"` streams an answer on a fresh clone.
 
@@ -245,14 +257,34 @@ falls.
 - How zero-shot multiple choice is scored: the log-likelihood of each choice, with and without length normalization.
 - Five tasks: HellaSwag, LAMBADA, ARC-Easy, PIQA, Winogrande; what each tests and its chance level.
 - Checking the scorer: it must reproduce GPT-2 small's published numbers.
-- Reference models through `transformers`, measured here, not copied: GPT-2 small, and small open chat models such as
-  SmolLM2-135M-Instruct and MiniMind where their formats allow.
+- Reference models through `transformers`, measured here, not copied: GPT-2 small and SmolLM2-135M.
 - The report: one table, every model, every stage.
 
-**Done when:** the table in "How it scores" above is reproduced by this repo's code within noise, with at least two
-reference models measured.
+**Done when:** the table in "How it scores" above is reproduced by this repo's code within noise, with two reference
+models measured.
 
 **Front end:** the *Evals* page: the benchmark table and charts, per stage and against the reference models.
+
+---
+
+## Inference: Days 9 to 18
+
+This is where the repo goes further than MiniMind. MiniMind ships a CLI, a web demo, an API server and exports to
+other engines. Here inference is built up from the loop to a serving engine, and every idea is measured on the same
+model with the same harness, so you can see what each one buys and what it costs.
+
+```text
+the loop → sampling → measuring → faster → smaller → a server → an engine → load → structure → other runtimes
+```
+
+Three rules for these days:
+
+- **Every claim has a number, and every number has a script.** Results go to `results/inference/` with the device,
+  the settings and the date.
+- **Quality is measured next to speed.** A faster or smaller model is re-scored with Day 7's evals, so a speed-up
+  that costs accuracy shows its price.
+- **Same output first.** Where an optimization should not change the text (the KV cache, batching, speculative
+  decoding, prefix caching), a test asserts token-for-token equality before any timing is reported.
 
 ## Day 9: Inference by hand
 
@@ -261,8 +293,7 @@ reference models measured.
 - Tokenize, embed, one forward pass, logits, pick a token, append, repeat.
 - Prefill against decode: why the first token is slow and the rest are fast.
 - The KV cache: what is stored, how it grows, bytes per token; the naive loop against the cached one.
-- A sliding cache for RoPE: what happens when the context is full.
-- Measuring properly: time to first token, tokens per second, and why GPU timings need a sync.
+- A sliding cache for RoPE: what happens when the context is full, and why its output can differ from re-reading.
 
 **Done when:** the cached loop produces the same tokens as the naive loop, and the speed of both is in `results/`.
 
@@ -275,66 +306,184 @@ reference models measured.
 - Temperature, top-k, top-p, min-p, typical-p: the distribution before and after each.
 - Penalties: repetition, frequency, presence, and DRY.
 - Search: greedy, beam, contrastive.
-- Stopping: `<|endoftext|>`, stop strings, a token limit.
-- Presets, and the measured trade between repetition and quality.
+- Stopping: `<|endoftext|>`, stop strings that span tokens, a token limit.
+- Thirteen ways of decoding on the same held-out prompts: repetition, variety, and how plausible the result is.
 
 **Done when:** each setting has a measurement on the same held-out prompts in `results/`.
 
 **Front end:** the *Inference* page: a playground with every control and the live next-token distribution.
 
-## Day 11: Faster and smaller
+## Day 11: Measure it
 
-**Do this:** make the same model cheaper to run, and measure what each idea costs.
+**Do this:** build the harness every later day uses, and learn what the numbers mean.
 
-- Batching: several prompts in one pass, padding and attention masks, throughput against latency.
-- Precision: float32, float16, bfloat16, per device.
-- Quantization: 8-bit and 4-bit weights, round to nearest; size, loss and speed.
-- Speculative decoding: a small draft model proposes, the large one checks; identical output, fewer large passes.
+- The metrics, defined: **time to first token** (TTFT), **time per output token** (TPOT) and inter-token latency,
+  **end-to-end latency**, **throughput** in tokens per second and requests per second, and peak memory.
+- Why averages mislead: p50, p95 and p99; warm-up; run-to-run variance; a control measurement at the end of a sweep
+  to catch drift.
+- Timing a GPU honestly: asynchronous execution, and why a missing sync measures queueing.
+- How TTFT grows with prompt length (prefill is one pass over the prompt) and how TPOT does not (decode is one
+  token), until the context is full.
+- **Where the time goes:** embedding, attention, feed-forward, the output layer over 50,257 tokens, sampling, and
+  Python itself, per decode step.
+- Sweeps: device (CPU, MPS, CUDA), prompt length, output length, precision.
+- `scripts/bench.py`: one command, one JSON file, comparable across machines.
 
-**Done when:** each idea has size, quality and speed numbers in `results/`, and speculative decoding's output equals
-plain greedy decoding's.
+**Done when:** `scripts/bench.py` produces a results file with every metric above for a named sweep, twice in a row
+within stated noise.
 
-**Front end:** the *Inference* page: the trade-off table and charts.
+**Front end:** the *Inference* page: TTFT against prompt length, the per-step time breakdown, the device table.
 
-## Day 12: A server
+## Day 12: Faster
+
+**Do this:** make one stream of tokens come out sooner, and measure what each idea costs.
+
+- Precision: float32, float16, bfloat16, per device; speed, memory and held-out loss.
+- `torch.compile` on CUDA; what it does and what the first call costs.
+- Batched sampling: n continuations of one prompt for little more than the price of one.
+- **Speculative decoding** with a 30M draft model: accepted tokens per round, the speed-up, and a test that the
+  output equals plain greedy decoding.
+- Draft without a model: prompt-lookup decoding, where the draft is copied from the prompt.
+- What did not help, and why (kept, with numbers).
+
+**Done when:** each idea has speed, memory and quality numbers from Day 11's harness, and speculative decoding's
+output equals greedy decoding's.
+
+**Front end:** the *Inference* page: the speed-up table; a speculative decoding replay showing drafted, accepted and
+rejected tokens.
+
+## Day 13: Smaller
+
+**Do this:** store the weights in fewer bits, and find out what each bit costs.
+
+- Round-to-nearest quantization: 8 bits with a scale per row, 4 bits with a scale per group of 64 weights.
+- Which matrices are sensitive: the tied embedding and output layer against the rest.
+- Dynamic int8 on the CPU, where the arithmetic itself is 8-bit and it is faster, not only smaller.
+- Calibration-based quantization (GPTQ): the idea, and a comparison when the author's implementation lands.
+- **The curve:** size against held-out loss, benchmark average, chat repetition and tokens per second, for every
+  setting, from Day 7's and Day 8's evals.
+- A quantized checkpoint on disk, and loading it.
+
+**Done when:** every setting has size, speed and the Day 7 eval numbers in `results/`, and one quantized checkpoint
+round-trips through save and load with the same outputs.
+
+**Front end:** the *Inference* page: the size-quality-speed chart.
+
+## Day 14: A server
 
 **Do this:** put the model behind an API that any OpenAI client can call.
 
-- `/v1/chat/completions`, `/v1/completions`, `/v1/models`.
-- Streaming with server-sent events.
-- Request state: what a server must remember for each request in flight.
-- A simple scheduler: waiting, running and finished requests; first in, first out; a limit on active requests.
+- `/v1/chat/completions`, `/v1/completions`, `/v1/models`, `/health`.
+- Streaming with server-sent events; stop sequences; `max_tokens`; `seed`; `logprobs`; token usage in the reply.
+- Request state: what a server must remember for each request in flight; cancelling when the client disconnects.
+- A simple scheduler: waiting, running and finished requests; first in, first out; a bounded queue that answers
+  429 when full.
+- A `/metrics` endpoint: queue depth, TTFT and latency histograms, tokens generated.
 
-**Done when:** the official `openai` Python client gets a streamed and a non-streamed answer from the local server.
+**Done when:** the official `openai` Python client gets a streamed and a non-streamed answer from the local server,
+and a burst larger than the queue gets 429s, not a hang.
 
 **Front end:** the *Chat* page: a chat with the final model, with tokens per second and time to first token.
 
-## Day 13: A serving engine
+## Day 15: A serving engine
 
 **Do this:** serve many requests at once, the way a real engine does.
 
-- Continuous batching: requests join and leave a running batch between decode steps.
-- KV-cache management: a memory budget, admission, eviction when a request finishes.
-- Prefix caching: reuse the cache for a shared system prompt.
-- A load test: requests per second, tokens per second and latency percentiles, against the Day 12 server.
+- From one-at-a-time, to static batches, to **continuous batching**: requests join and leave a running batch
+  between decode steps.
+- A batch of sequences with different lengths: per-row KV caches, padding, masks.
+- **KV-cache memory:** a budget in bytes, admission control, freeing a finished request's cache.
+- **Prefix caching:** the cache of a shared system prompt computed once and reused.
+- Chunked prefill, so one long prompt does not stall everyone's decode steps.
+- Scheduling policies and fairness: first in first out against shortest first.
 
-**Done when:** under the same load, the engine's throughput and latency are measured against the one-at-a-time
-server, and every request gets the same text as it would alone.
+**Done when:** every request served by the engine gets exactly the text it would get alone (a test), and the
+engine's scheduler can be replayed step by step from a recorded trace.
 
-**Front end:** the *Inference* page: the scheduler animated on a recorded load, and the load-test charts.
+**Front end:** the *Inference* page: the scheduler animated on a recorded trace; the cache budget filling and
+emptying.
 
-## Day 14: Ship
+## Day 16: Load tests
+
+**Do this:** find out what the server and the engine do as traffic rises.
+
+- Closed-loop load (N clients, each waiting for its answer) against open-loop load (requests arrive on a clock,
+  whether or not the server keeps up), and why they tell different stories.
+- A concurrency sweep: TTFT, TPOT and end-to-end latency at p50, p95 and p99; tokens per second in total and per
+  request; the queue.
+- **Goodput:** requests per second that meet a latency target, and the knee where it collapses.
+- Day 14's server against Day 15's engine under the same load.
+- Chat traffic against agent traffic: short independent questions, and a conversation resent with a growing
+  context, with prefix caching on and off.
+- Optional: the same tests through the author's
+  [inference_tools](https://github.com/a-ramakrishnan/inference_tools) gateway and `ibench`.
+
+**Done when:** the sweep is in `results/` for both servers on the same machine, with the knee of each identified.
+
+**Front end:** the *Inference* page: latency percentiles and throughput against concurrency, server against engine.
+
+## Day 17: Structured output
+
+**Do this:** make a 124M model produce valid JSON every time.
+
+- Logit bias and banned tokens: the smallest form of control.
+- Constrained decoding: a state machine over characters, and a mask on the logits that allows only tokens that keep
+  the output valid.
+- A regular expression, a choice among options, and a JSON schema, each compiled to a mask.
+- What the constraint guarantees (the shape) and what it does not (the truth), measured: validity with and without
+  the constraint, and Day 7's instruction-following set again.
+- `response_format` on the Day 14 server.
+
+**Done when:** on a set of schema prompts, constrained output parses and validates 100% of the time, and the
+unconstrained rate is reported next to it.
+
+**Front end:** the *Inference* page: the mask at each step, allowed tokens against forbidden ones.
+
+## Day 18: Other runtimes
+
+**Do this:** run the same weights outside this repo's code, and compare.
+
+- A `transformers` model class and safetensors, so `AutoModelForCausalLM.from_pretrained(..., trust_remote_code=True)`
+  works; a chat template that reproduces the `User:` / `Assistant:` format token for token.
+- ONNX export and ONNX Runtime on the CPU.
+- MLX on Apple Silicon.
+- Each runtime checked for the same logits, then measured with Day 11's harness.
+- Stated limit: llama.cpp, ollama and vLLM need an architecture they already implement. Ours has QK-norm; what a
+  GGUF port would take is written down, not done.
+
+**Done when:** each runtime reproduces the reference logits within a stated tolerance and has a row in the speed
+table.
+
+**Front end:** the *Inference* page: the runtime table.
+
+## Day 19: Fine-tune with Axolotl
+
+**Do this:** fine-tune the model on your own data with [Axolotl](https://github.com/axolotl-ai-cloud/axolotl), from
+a YAML file, without touching this repo's training code.
+
+- What Axolotl needs from a model, and where each piece comes from: the `transformers` class and the chat template
+  (Day 18), a pad token, and `trust_remote_code: true`.
+- The chat template and `roles_to_train: [assistant]` give the same loss mask as Day 5: a test compares the token
+  ids and the mask with `mini_llm/chat.py`.
+- Ready-made configs in `axolotl/`: LoRA on the chat model, a full fine-tune, and a small one that runs on a Mac.
+  The LoRA targets are named (`c_attn`, `c_proj`, `c_fc`): every weight matrix in the model is an `nn.Linear`.
+- A Colab notebook: install, point at a dataset of `messages`, train, try the result.
+- Merging the adapter and converting back to a native checkpoint, so Day 7's evals and Day 14's server run on the
+  fine-tuned model.
+
+**Done when:** the LoRA config trains on Colab from a clean install, the merged model loads in `scripts/chat.py`,
+and its Day 7 results are next to the starting model's.
+
+## Day 20: Ship
 
 **Do this:** make it something other people can use, and tell them how it was built.
 
 - The front end finished: Pipeline, Data, Model, Evals, Inference, Chat; phone width; light and dark; published on
   GitHub Pages (everything but live generation works there, from the committed `results/`).
-- A `transformers` model class and safetensors, so `AutoModelForCausalLM.from_pretrained(..., trust_remote_code=True)`
-  works.
 - The weights on the Hugging Face Hub, each with a model card. The cards correct two things in the source metadata:
   the DPO model's `meta.json` inherits the SFT run's steps, chip and duration, and stage 2 records only its last
   session's time.
-- Dataset licences checked and listed.
+- Dataset licences checked and listed, including the held-out excerpts shipped in `mini_llm/evals/data/`.
 - The README: what it is, a quick start, the days, the results, the limits, credits.
 - The write-up: a thread for X and a post for LinkedIn on how this was built, drafted in `docs/launch.md`, reviewed
   and posted by the author.
@@ -355,8 +504,11 @@ mini_llm/                  the Python package the days use
   dataset/                 download, mix, tokenize, batch
   trainer/                 pretrain, stage2, sft, dpo
   evals/                   held-out loss, benchmarks, chat quality, the report
-  inference/               sampling, generation, decoding strategies, quantization, the server, the engine
-scripts/                   one entry point per job (chat, eval, serve, prepare_data, train_*, convert)
+  inference/               sampling, generation, search, quantization, constrained decoding, the server, the engine
+  bench/                   the measuring harness: TTFT, latency percentiles, throughput, load generation
+  hf/                      the transformers model class, the chat template, converters
+scripts/                   one entry point per job (chat, eval, benchmark, bench, serve, loadtest, train_*, convert)
+axolotl/                   ready-made Axolotl configs for fine-tuning this model
 web/                       the front end (static HTML/JS/CSS, no build step)
 results/                   measurements as JSON, committed, read by the READMEs and the front end
 docs/                      this plan, the launch posts
@@ -373,21 +525,21 @@ the model library and the diffusion models stay behind.
 - Plain PyTorch for everything that teaches. `transformers` appears only in the export wrapper and to load reference
   models.
 - Python 3.9+ (the Mac's system Python). No build step for the front end.
-- Stated limit: llama.cpp, ollama and vLLM need an architecture they already implement. Ours has QK-norm, so those
-  routes need a custom port and are not in the fourteen days.
+- Stated limit: llama.cpp, ollama and vLLM need an architecture they already implement. Ours has QK-norm, so
+  those routes need a custom port; Day 18 writes down what it would take.
 
 ## Decisions for the author
 
 | # | Decision | Default if nothing is said |
 |---|---|---|
-| 1 | Hugging Face account and repo names for the weights | wait until Day 14; everything runs from a local weights folder |
+| 1 | Hugging Face account and repo names for the weights | wait until Day 20; everything runs from a local weights folder. Day 19 on Colab needs the weights on the Hub, so this is wanted by then |
 | 2 | Public model names | `mini-llm-base`, `mini-llm-chat-sft`, `mini-llm-chat` |
 | 3 | Keep the plain `User:` / `Assistant:` format, or retrain SFT with ChatML special tokens | keep it; no retraining |
-| 4 | Publish the front end on GitHub Pages | yes, on Day 14 |
+| 4 | Publish the front end on GitHub Pages | yes, on Day 20 |
 | 5 | Who merges pull requests | the author |
 
-## After Day 14
+## After Day 20
 
 LoRA; distillation into a smaller model; GRPO with checkable rewards; thinking tokens and tool calls (both need new
-special tokens and a new SFT run); a longer context; paged KV storage; a llama.cpp port; vision in the style of
-MiniMind-V.
+special tokens and a new SFT run); a longer context; paged KV storage; a quantized KV cache; a llama.cpp port;
+in-browser inference with WebGPU; vision in the style of MiniMind-V.
