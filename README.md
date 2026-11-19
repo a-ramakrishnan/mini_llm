@@ -9,7 +9,7 @@ Built in the open, one day at a time. Every stage is a script you can read, ever
 ![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-3776ab?logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-plain%2C%20no%20wrappers-ee4c2c?logo=pytorch&logoColor=white)
 ![Training on Colab](https://img.shields.io/badge/Training-Google%20Colab-f9ab00?logo=googlecolab&logoColor=white)
-![Days available](https://img.shields.io/badge/Days%20available-8%20of%2021-2ea44f)
+![Days available](https://img.shields.io/badge/Days%20available-9%20of%2021-2ea44f)
 
 [**Start at Day 0**](days/day_00_setup/) · [The days](#the-days) · [What it can do](#what-it-can-and-cannot-do) · [The plan](docs/PLAN.md) · [About](#about)
 
@@ -185,7 +185,7 @@ One thing to do each day, a folder with a README and code you run, and a check t
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](days/day_05_instruction_tuning/) | ✅ |
 | 6 | [Preference tuning: DPO against repetition](days/day_06_preference_tuning/) | ✅ |
 | 7 | [Evals: held-out loss, generation quality, chat quality](days/day_07_evals/) | ✅ |
-| 8 | Benchmarks: five standard tasks, reference models, the report | Planned |
+| 8 | [Benchmarks: five standard tasks, reference models, the report](days/day_08_benchmarks/) | ✅ |
 | 9 | Inference by hand: prefill, decode, the KV cache | Planned |
 | 10 | Sampling: temperature, top-k, top-p, penalties, search, stopping | Planned |
 | 11 | Measure it: time to first token, latency, throughput, memory, and where the time goes | Planned |
@@ -219,7 +219,7 @@ and gets a lot wrong. The numbers below were measured with this repo's code unle
 | LAMBADA | **32.6** | 20.3 | 12.9 |
 | Average of the five | **44.4** | 42.3 | 38.4 |
 
-The benchmark rows and GPT-2's loss were measured in the source project; Day 8 reproduces them here. The base model
+GPT-2's held-out loss was measured in the source project; the benchmark rows are reproduced on [Day 8](days/day_08_benchmarks/). The base model
 beats GPT-2 small on the kind of text it was trained on and on two of five benchmarks, and is well behind on
 LAMBADA. Chat tuning costs about four points.
 
