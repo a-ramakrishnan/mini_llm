@@ -153,7 +153,9 @@ def pretrain(model, loader, cfg, dev, callback=None, resume=False, save_state=Tr
             raise ValueError(f"The saved run is already at step {start:,}; ask for more than {start:,} steps.")
         if cfg.max_iters != st["train_config"]["max_iters"]:  # extending: re-warm onto the stretched schedule
             rewarm = (start, st["lr"], max(1, min(REWARM_STEPS, (cfg.max_iters - start) // 5)))
-        print(f"Resuming at step {start:,} of {cfg.max_iters:,} (best validation loss so far {best_val_loss:.4f})"
+        so_far = "no evaluation on this data yet" if best_val_loss == float("inf") else \
+            f"best validation loss so far {best_val_loss:.4f}"
+        print(f"Resuming at step {start:,} of {cfg.max_iters:,} ({so_far})"
               + (f"; the schedule now ends at step {cfg.max_iters:,}" if rewarm else ""))
         del st
     extra = {"model_config": model_config}

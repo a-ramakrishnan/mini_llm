@@ -38,7 +38,7 @@ pipeline, every stage a script); the day-by-day shape follows
 | 1 | [Read the model: every layer, every parameter, one forward pass by hand](#day-1-the-model) | [Available](../days/day_01_the_model/), front-end page to come |
 | 2 | [Turn text into training batches: datasets, mixing, tokens, windows](#day-2-data-and-tokens) | [Available](../days/day_02_data_and_tokens/), front-end page to come |
 | 3 | [Pretrain: the training loop, and a small model trained on Colab](#day-3-pretraining) | [Available](../days/day_03_pretraining/); notebook not yet run on Colab |
-| 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](#day-4-more-data) | Planned |
+| 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](#day-4-more-data) | [Available](../days/day_04_more_data/); notebook not yet run on Colab |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](#day-5-instruction-tuning) | Planned |
 | 6 | [Preference tuning: DPO against repetition](#day-6-preference-tuning) | Planned |
 | 7 | [Evals: held-out loss, generation quality, chat quality](#day-7-evals) | Planned |

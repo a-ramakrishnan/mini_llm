@@ -58,3 +58,22 @@ def test_resume_extends_the_run(tmp_path):
     meta = read_state_meta(str(tmp_path))
     assert meta["step"] == 80 and len(val) == 4             # the history before the resume is kept
     assert [round(v, 4) for v in val[:2]] == first["val_losses"] and meta["best_val"] <= first["best_val"]
+
+
+def test_stage2_starts_from_a_copy_with_the_best_loss_reset(tmp_path):
+    from mini_llm.trainer.stage2 import start_from_base
+    base, out = tmp_path / "base", tmp_path / "stage2"
+    base.mkdir()
+    model, loader, cfg = setup(base, 40)
+    pretrain(model, loader, cfg, CPU)
+    before = read_state_meta(str(base))
+    assert start_from_base(str(base), str(out), say=lambda *_: None) == 40
+    assert read_state_meta(str(out))["best_val"] is None                 # the old best is not the bar any more
+    model2, loader2, cfg2 = setup(base, 100)
+    cfg2.best_model_path = str(out / "best_model_params.pt")
+    train, val = pretrain(model2, loader2, cfg2, CPU, resume=True)
+    after = read_state_meta(str(out))
+    assert after["step"] == 100
+    assert abs(after["best_val"] - min(val[2:])) < 1e-6                   # the best of stage 2's own evaluations
+    assert read_state_meta(str(base)) == before                           # the base run is untouched
+    assert (out / "base_model_params.pt").exists()

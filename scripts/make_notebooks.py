@@ -161,6 +161,88 @@ Keep the whole folder on Drive: **Day 4 continues this run from its `training_st
 ]
 
 
+NOTEBOOKS["days/day_04_more_data/day_04_more_data.ipynb"] = [
+    md("""
+# Day 4: More data
+
+Yesterday's run is finished, and the model would still improve with more text. Today it carries on: the same
+weights, the same optimizer state, the same step counter, a larger dataset and a later end.
+
+This notebook runs [`scripts/train_stage2.py`](https://github.com/a-ramakrishnan/mini_llm/blob/main/scripts/train_stage2.py).
+It needs Day 3's run on your Google Drive (`mini_llm/runs/<preset>-pretrain`).
+"""),
+    *setup(),
+    code("""
+BASE = f"{WORK}/runs/{PRESET}-pretrain"
+RUN = f"{WORK}/runs/{PRESET}-stage2"
+assert os.path.exists(f"{BASE}/training_state.pt"), "Run Day 3 first: this continues its saved training state"
+"""),
+    md("""
+## 1. The larger dataset
+
+`mini` continues on the `mini-more` recipe (Day 3's data plus Khan Academy-style lessons from Cosmopedia). `full`
+continues on `stage2`: Mini FineWeb-Edu *full*, about six times the *small* subset.
+
+The full subset contains the small subset's validation documents. They are removed before tokenizing: otherwise the
+held-out score would be measured on text the model had trained on.
+"""),
+    RESTORE,
+    code("""
+RECIPE = {"mini": "mini-more", "full": "stage2"}[PRESET]
+!python scripts/prepare_data.py --recipe {RECIPE}
+"""),
+    BACKUP,
+    md("""
+## 2. Continue the run
+
+- The new run folder starts as a **copy** of Day 3's training state. Day 3's run is not changed.
+- The **cosine schedule is stretched** to the new end, and the learning rate **re-warms** from where it stopped onto
+  the stretched curve over 200 steps, so it does not jump.
+- The saved **best validation loss is reset**: it was measured on the old data mix.
+- The state is saved at every evaluation. If the session disconnects, run every cell again.
+"""),
+    code("""
+!python scripts/train_stage2.py --preset {PRESET} --base-run "{BASE}" --out "{RUN}"
+"""),
+    md("## 3. The loss, across both stages"),
+    code("""
+import json, matplotlib.pyplot as plt
+state = json.load(open(f"{RUN}/training_state.json"))
+base_end = json.load(open(f"{BASE}/training_state.json"))["step"]
+steps = [state["eval_interval"] * (i + 1) for i in range(len(state["val_losses"]))]
+plt.figure(figsize=(8, 4))
+plt.plot(steps, state["train_losses"], label="train")
+plt.plot(steps, state["val_losses"], label="validation")
+plt.axvline(base_end, color="gray", linestyle="--")
+plt.text(base_end, max(state["val_losses"]), " stage 2 starts: new data mix", va="top")
+plt.xlabel("step"); plt.ylabel("loss"); plt.legend(); plt.grid(alpha=0.3); plt.ylim(top=min(6, max(state["val_losses"])))
+plt.show()
+"""),
+    md("""
+The validation loss can step up or down at the dashed line. That is the data changing, not the model: the two
+sides are measured on different mixes, which is why the best loss was reset. Day 7 compares the two models on the
+same held-out set.
+"""),
+    md("## 4. Before and after, on the same prompts"),
+    code("""
+for run in (BASE, RUN):
+    print("=" * 20, os.path.basename(run))
+    !python scripts/chat.py --complete "The water cycle is the process by which" --model "{run}" --preset greedy --max-tokens 60
+    !python scripts/chat.py --complete "Photosynthesis is" --model "{run}" --preset greedy --max-tokens 60
+"""),
+    md("""
+## 5. What it bought, on the full run
+
+| | Stage 1 (500M tokens) | Stage 2 (2.5B tokens) | OpenAI GPT-2 small |
+|---|---|---|---|
+| Held-out Mini FineWeb-Edu loss | 3.549 | **3.296** | 3.401 |
+| Benchmark average (five tasks) | 40.4 | 42.3 | **44.4** |
+
+Keep the stage 2 folder on Drive: **Day 5 turns this model into one that answers questions.**
+"""),
+]
+
+
 def main():
     for path, cells in NOTEBOOKS.items():
         nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"provenance": [], "gpuType": "T4"},
