@@ -37,7 +37,7 @@ pipeline, every stage a script); the day-by-day shape follows
 | 0 | [Set up, get the weights, make the model write](#day-0-set-up) | [Available](../days/day_00_setup/) |
 | 1 | [Read the model: every layer, every parameter, one forward pass by hand](#day-1-the-model) | [Available](../days/day_01_the_model/), front-end page to come |
 | 2 | [Turn text into training batches: datasets, mixing, tokens, windows](#day-2-data-and-tokens) | [Available](../days/day_02_data_and_tokens/), front-end page to come |
-| 3 | [Pretrain: the training loop, and a small model trained on your own machine](#day-3-pretraining) | Planned |
+| 3 | [Pretrain: the training loop, and a small model trained on Colab](#day-3-pretraining) | [Available](../days/day_03_pretraining/); notebook not yet run on Colab |
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](#day-4-more-data) | Planned |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](#day-5-instruction-tuning) | Planned |
 | 6 | [Preference tuning: DPO against repetition](#day-6-preference-tuning) | Planned |
@@ -65,6 +65,8 @@ days/day_09_inference_by_hand/
 - **The code that does the work lives in the `mini_llm/` package**; a day's files import it, run it and measure it.
 - **Every number comes from a file.** A day's measurements are written under `results/`, and the README and the front
   end read them from there.
+- **Training runs on Google Colab.** Days 3 to 6 each have a notebook with an *Open in Colab* badge; runs are saved to
+  Google Drive and one day continues from the day before.
 - **Every day adds its page to the front end** (`web/`), so the site grows with the days and Day 14 only finishes it.
 
 ## Where we start from
@@ -165,16 +167,15 @@ back to text.
 
 ## Day 3: Pretraining
 
-**Do this:** train a small model from random weights on your own machine and watch the loss fall.
+**Do this:** train a small model from random weights on Google Colab and watch the loss fall.
 
 - The loop: AdamW, linear warmup, cosine decay, gradient clipping, gradient accumulation.
 - Mixed precision on CUDA; float32 on a Mac; `torch.compile`.
 - Evaluating every N steps; keeping the best checkpoint; a training state you can resume from.
-- **The mini path:** a ~30M model on ~50M tokens, about an hour on a Mac or a free Colab GPU.
+- **The mini path:** a 29.9M model on 49M tokens, on a free Colab GPU.
 - The full run as it was done: 500M tokens, 30,500 steps, 4 h 20 min on an L4.
 
-**Done when:** the mini path runs from a clean clone and its validation loss falls; the full run's loss curve is in
-`results/`.
+**Done when:** the notebook runs the mini path on Colab from a clean clone and its validation loss falls.
 
 **Front end:** the *Pipeline* page, stage 1: settings, loss curve, speed.
 
