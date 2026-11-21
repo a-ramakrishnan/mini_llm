@@ -139,7 +139,7 @@ base loops (55% repeated 4-token runs) and sampled text does not (1%).
 sentence, the chat model answers a question.
 
 - The repo layout and what each folder is for.
-- Where the weights come from: a local folder now, the Hugging Face Hub after Day 20.
+- Where the weights come from: the Hugging Face Hub (`scripts/download_weights.py`), or a local folder.
 - `scripts/chat.py`: text completion and chat in the terminal, streaming, with tokens per second.
 - The map of the days that follow.
 
@@ -480,7 +480,8 @@ and its Day 7 results are next to the starting model's.
 
 - The front end finished: Pipeline, Data, Model, Evals, Inference, Chat; phone width; light and dark; published on
   GitHub Pages (everything but live generation works there, from the committed `results/`).
-- The weights on the Hugging Face Hub, each with a model card. The cards correct two things in the source metadata:
+- The weights on the Hugging Face Hub, each with a model card (uploaded early, private until launch; `scripts/publish_to_hub.py`
+  rebuilds and re-uploads them). The cards correct two things in the source metadata:
   the DPO model's `meta.json` inherits the SFT run's steps, chip and duration, and stage 2 records only its last
   session's time.
 - Dataset licences checked and listed, including the held-out excerpts shipped in `mini_llm/evals/data/`.
@@ -532,7 +533,7 @@ the model library and the diffusion models stay behind.
 
 | # | Decision | Default if nothing is said |
 |---|---|---|
-| 1 | Hugging Face account and repo names for the weights | wait until Day 20; everything runs from a local weights folder. Day 19 on Colab needs the weights on the Hub, so this is wanted by then |
+| 1 | Hugging Face account and repo names for the weights | decided: `aramkris/mini-llm-base`, `aramkris/mini-llm-chat-sft`, `aramkris/mini-llm-chat`, one repo each, private until launch |
 | 2 | Public model names | `mini-llm-base`, `mini-llm-chat-sft`, `mini-llm-chat` |
 | 3 | Keep the plain `User:` / `Assistant:` format, or retrain SFT with ChatML special tokens | keep it; no retraining |
 | 4 | Publish the front end on GitHub Pages | yes, on Day 20 |
