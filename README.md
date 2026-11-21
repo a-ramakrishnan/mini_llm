@@ -21,7 +21,7 @@ laid out day by day, Day 0 to Day 14.
 | 4 | [Scale the data five times: resume, re-warm, keep the held-out set held out](days/day_04_more_data/) | Available |
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](days/day_05_instruction_tuning/) | Available |
 | 6 | [Preference tuning: DPO against repetition](days/day_06_preference_tuning/) | Available |
-| 7 | Evals: held-out loss, generation quality, chat quality | Planned |
+| 7 | [Evals: held-out loss, generation quality, chat quality](days/day_07_evals/) | Available |
 | 8 | Benchmarks: five standard tasks, reference models, the report | Planned |
 | 9 | Inference by hand: prefill, decode, the KV cache | Planned |
 | 10 | Sampling: temperature, top-k, top-p, penalties, search, stopping | Planned |
@@ -52,7 +52,7 @@ the GPT-2 tokenizer. English only.
 | 1. Pretrain | 500M tokens of Mini FineWeb-Edu + Cosmopedia | held-out web text loss 3.549 |
 | 2. Continued pretrain | 2.5B tokens | 3.296 (OpenAI GPT-2 small: 3.401) |
 | 3. Instruction tuning | smol-smoltalk conversations | held-out answer loss 2.316 → 1.390 |
-| 4. Preference tuning (DPO) | 1,891 answer pairs | greedy repetition 12.4% → 6.5% |
+| 4. Preference tuning (DPO) | 1,891 answer pairs | greedy repetition on unseen questions 16.1% → 12.9% |
 
 ## License
 

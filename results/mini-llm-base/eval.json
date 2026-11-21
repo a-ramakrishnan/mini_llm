@@ -1,0 +1,864 @@
+{
+ "model": "mini-llm-base",
+ "is_chat": false,
+ "params": 123552768,
+ "heldout": {
+  "sets": {
+   "mini-fineweb-edu": {
+    "loss": 3.2957,
+    "perplexity": 27.0,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Mini FineWeb-Edu",
+    "kind": "in the training distribution"
+   },
+   "cosmopedia-stories": {
+    "loss": 2.7846,
+    "perplexity": 16.19,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Cosmopedia stories",
+    "kind": "in the training distribution"
+   },
+   "cosmopedia-wikihow": {
+    "loss": 2.3425,
+    "perplexity": 10.41,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Cosmopedia WikiHow",
+    "kind": "in the training distribution"
+   },
+   "cosmopedia-openstax": {
+    "loss": 2.7173,
+    "perplexity": 15.14,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Cosmopedia OpenStax",
+    "kind": "in the training distribution"
+   },
+   "cosmopedia-stanford": {
+    "loss": 2.6407,
+    "perplexity": 14.02,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Cosmopedia Stanford",
+    "kind": "in the training distribution"
+   },
+   "cosmopedia-khanacademy": {
+    "loss": 2.3359,
+    "perplexity": 10.34,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Cosmopedia Khan Academy",
+    "kind": "in the training distribution"
+   },
+   "tinystories": {
+    "loss": 2.7507,
+    "perplexity": 15.65,
+    "context": 256,
+    "tokens": 16384,
+    "title": "TinyStories",
+    "kind": "not trained on"
+   },
+   "wikitext-2": {
+    "loss": 5.0468,
+    "perplexity": 155.53,
+    "context": 256,
+    "tokens": 16384,
+    "title": "WikiText-2",
+    "kind": "not trained on"
+   },
+   "tiny-shakespeare": {
+    "loss": 5.4461,
+    "perplexity": 231.85,
+    "context": 256,
+    "tokens": 16384,
+    "title": "Tiny Shakespeare",
+    "kind": "not trained on"
+   }
+  },
+  "seconds": 42.7,
+  "device": "mps"
+ },
+ "generation": {
+  "greedy_repeated_4grams": 0.5481,
+  "sampled_repeated_4grams": 0.0103,
+  "sampled_distinct_2": 0.9293,
+  "sampled_avg_prob": 0.3905,
+  "tokens_per_sec": 50.4,
+  "ttft_ms": 45.8,
+  "settings": {
+   "tokens": 100,
+   "seed": 1234,
+   "sampled": {
+    "temperature": 0.8,
+    "top_k": null,
+    "top_p": 0.9,
+    "repetition_penalty": 1.15
+   }
+  },
+  "size": {
+   "params": 123552768,
+   "weights_bytes": 494211072,
+   "kv_bytes_per_token": 73728,
+   "context_window": 512
+  },
+  "samples": [
+   {
+    "prompt": "Once upon a time there was a little girl who",
+    "greedy": " loved to play with her friends. She would spend hours together, playing games, and exploring the world around her. One day, she decided to join a local club called \"The Little Red Cross.\" This club was known for its friendly atmosphere and commitment to helping people in need.\n\nOne day, while playing with her friends, she came across a group of kids who were struggling with mental health issues. They were struggling with feelings of loneliness, anxiety, and depression. As they talked about their",
+    "sampled": " loved playing with the animals she grew up in. She would often see her friends jumping on one of the large, sturdy beasts while thinking about how big they could be! This was called tectonic movement!\n\nOne day, she noticed something strange - some parts of her friend's big family friend seemed to move closer together than usual. Her dad said he couldn't find their adult relatives because he had no idea where they were or what they looked like. So, he started searching for other"
+   },
+   {
+    "prompt": "Tom and his dog went to the park.",
+    "greedy": " They saw a dog, and they decided to take a walk. They found a dog, and they decided to take a walk. They found a dog, and they decided to take a walk. They found a dog, and they decided to take a walk. They found a dog, and they decided to take a walk. They found a dog, and they decided to take a walk. They found a dog, and they decided to take a walk. They found a dog, and they decided to",
+    "sampled": " The dog said, \u201cHey, I\u2019m going to jump over a big rock!\u201d\n- B \u2013 2 (a)\n(c) In this case, \u2018b\u2019 is equivalent to \u20181\u2019. When the action involves jumping or crossing in one direction, the word \u2018t\u2019 is used as an alternative word to \u2018t\u2019. This example shows that understanding these differences helps clarify when the object of the sentence is referring"
+   },
+   {
+    "prompt": "The water cycle is the process by which",
+    "greedy": " water moves from the ocean to the atmosphere. The water cycle is the process by which water moves from the ocean to the atmosphere. The water cycle is the process by which water moves from the ocean to the atmosphere. The water cycle is the process by which water moves from the ocean to the atmosphere. The water cycle is the process by which water moves from the ocean to the atmosphere. The water cycle is the process by which water moves from the ocean to the atmosphere. The water cycle is the process",
+    "sampled": " plants and animals exchange nutrients for energy and nutrients with each other to create a symbiotic relationship. It\u2019s a fascinating balance of growth, reproduction, and development that involves both a symbiotic relationship and an ecological interaction.\nFertilization: Plants and Animals\nMaintaining a healthy plant or animal is essential for its survival. This is because it provides the nutrients and water that plants need to grow properly. Additionally, fertilizing helps to ensure that the plants have enough energy to produce"
+   },
+   {
+    "prompt": "Photosynthesis is the process",
+    "greedy": " by which plants convert food into energy. This process is essential for the growth and development of plants.\n- Photosynthesis is the process by which plants convert food into energy. This process is essential for the growth and development of plants.\n- Photosynthesis is the process by which plants convert food into energy. This process is essential for the growth and development of plants.\n- Photosynthesis is the process by which plants convert food into energy. This process is essential for the growth and development of plants",
+    "sampled": " of converting carbon dioxide (CO2) into glucose and oxygen to create energy for cellular respiration.\nThe key steps in the system include:\n- Oxidation: This occurs when glucose undergoes a reaction with oxygen, producing CO2 and oxygen as byproducts.\n- Respiration: The body uses this energy to produce ATP through a process called ATP hydrolysis.\n- Metabolism: This involves the conversion of carbohydrates, proteins, fats, and proteins into various forms of energy"
+   },
+   {
+    "prompt": "In the history of science,",
+    "greedy": " the discovery of the atomic bomb was a major milestone. The discovery of the atomic bomb was a major milestone in the history of science. It was the first time that scientists had discovered the atomic bomb and its effects on the Earth.\nThe discovery of the atomic bomb was a major milestone in the history of science. It was the first time that scientists had discovered the atomic bomb and its effects on the Earth. It was the first time that scientists had discovered the atomic bomb and its effects on the Earth",
+    "sampled": " women have been the problem for most of their lives.\nI would like to share some examples from the past of the debate on women\u2019s contributions to science:\n- Elizabeth hierarchies \u2013 The male-dominated status of science in Britain was as high as 20 years ago when the female workforce dominated scientific research (now there is a growing number of female scientists).\n- Edmonia \u2013 The concept of an \u201cuniformed woman\u201d was popularised by various female scientists who"
+   },
+   {
+    "prompt": "The best way to learn a new language is",
+    "greedy": " to start with a beginner course. You can learn a language by yourself, or you can learn it by taking a course.\nIf you are new to a language, it is important to take the language seriously. You should take classes and practice speaking the language in a variety of settings. You should also take classes and practice speaking the language in a variety of settings.\nIf you are new to a language, it is important to take the language seriously. You should take classes and practice speaking the",
+    "sampled": " through the use of a language learning app. A language learning app or a language model can help you get started with a new language and build a new connection with your native language.\nHow to find a language learning app or app that helps with language learning\nThere are many ways to learn a new language, so it\u2019s important to find one that works for you. Here are some tips:\n- Research the app or app: Look for an app or app that offers interactive learning experiences"
+   }
+  ],
+  "seconds": 23.3,
+  "device": "mps"
+ },
+ "instructions": {
+  "n": 30,
+  "passed": 6,
+  "accuracy": 0.2,
+  "by_kind": {
+   "length": {
+    "n": 9,
+    "passed": 0
+   },
+   "list": {
+    "n": 5,
+    "passed": 3
+   },
+   "content": {
+    "n": 4,
+    "passed": 2
+   },
+   "format": {
+    "n": 12,
+    "passed": 1
+   }
+  },
+  "items": [
+   {
+    "id": "one-word-1",
+    "kind": "length",
+    "prompt": "Answer in one word: what colour is grass?",
+    "checked": "exactly one word",
+    "answer": "I am a passionate environmentalist who loves exploring the natural world around me. My favorite pastime is hiking in the mountains, hiking through forests, and exploring the wonders of nature. However, I often find myself overwhelmed by the overwhelming amount of information available on the internet. This constant need to find the right information can lead to confusion and confusion.\n\nOne day, while browsing through various websites, I stumbled upon a thread discussing the importance of understanding the different types of information available on the internet. As a lover of all things niche, I was intrigued by the idea that I could use",
+    "passed": false
+   },
+   {
+    "id": "one-word-2",
+    "kind": "length",
+    "prompt": "Reply with a single word. What is the opposite of hot?",
+    "checked": "exactly one word",
+    "answer": "1. Hot is the opposite of cold.\n2. Hot is the opposite of cold.\n3. Hot is the opposite of cold.\n4. Hot is the opposite of cold.\n\nTo help you remember what we learned about the difference between hot and cold, let's try a few examples together.\n\nExample 1:\n\n* Hot is the opposite of cold.\n* Hot is the opposite of cold.\n\nExample 2:\n\n* Hot is the opposite of cold.\n* Hot is the opposite of cold.\n\nExample 3:",
+    "passed": false
+   },
+   {
+    "id": "one-word-3",
+    "kind": "length",
+    "prompt": "In one word, what do bees make?",
+    "checked": "exactly one word",
+    "answer": "1. Beekeeper: The person who keeps bees in check.\n2. Beekeeper: The person who makes sure that bees are healthy and happy.\n3. Beekeeper: The person who makes sure that bees are healthy and happy.\n4. Beekeeper: The person who makes sure that bees are healthy and happy.\n5. Beekeeper: The person who makes sure that bees are healthy and happy.\n\nNow let's see how these two roles relate to one another.\n\n**Role 1: Beekeeper**\n\nOne of the most important roles of",
+    "passed": false
+   },
+   {
+    "id": "one-sentence-1",
+    "kind": "length",
+    "prompt": "In one sentence, explain what a volcano is.",
+    "checked": "exactly one sentence",
+    "answer": "A volcano is a large, active volcano that erupts from a small, dormant volcano. It is characterized by its large size, powerful winds, and powerful volcanoes. The volcano is located in the Pacific Ocean and is known for its unique features, including its large size, powerful winds, and powerful volcanoes.\n\nExample: The volcano of Mount Pinatubo is located in the Pacific Ocean and is known for its large size and powerful winds.\n\nSection 1: Understanding the Structure of a Volcanic System\n\nBefore diving into the details of the volcano, let's first",
+    "passed": false
+   },
+   {
+    "id": "one-sentence-2",
+    "kind": "length",
+    "prompt": "Describe the moon in exactly one sentence.",
+    "checked": "exactly one sentence",
+    "answer": "The moon is the largest moon in the solar system. It is located in the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of the constellation of",
+    "passed": false
+   },
+   {
+    "id": "short-1",
+    "kind": "length",
+    "prompt": "In no more than ten words, say what a library is.",
+    "checked": "at most 10 words",
+    "answer": "\"A library is a collection of resources designed to help users access and use information. It includes libraries, databases, and other tools that make it possible for users to find, read, and use information.\n\nExample:\n\n\"A library is a collection of resources designed to help users find, read, and use information. It includes libraries, databases, and other tools that make it possible for users to find, read, and use information.\n\nExample:\n\n\"A library is a collection of resources designed to help users find, read, and use information. It",
+    "passed": false
+   },
+   {
+    "id": "short-2",
+    "kind": "length",
+    "prompt": "Using fewer than twenty words, explain why we sleep.",
+    "checked": "under 20 words",
+    "answer": "1. The number of words in the sentence is 20.\n2. The sentence is written in a single sentence.\n3. The sentence is written in a single sentence.\n4. The sentence is written in a single sentence.\n5. The sentence is written in a single sentence.\n\nBy using fewer than twenty words, we can make our sentences more concise and easier to read. This is because fewer words are used in a sentence, which makes it easier to read and understand.\n\nLet's try a few examples together:\n\nExample 1:",
+    "passed": false
+   },
+   {
+    "id": "short-3",
+    "kind": "length",
+    "prompt": "Answer briefly, in at most fifteen words: what is a desert?",
+    "checked": "at most 15 words",
+    "answer": "1. A desert is a place where there is no water, air, or other natural resources.\n2. The term \"desert\" refers to a place where there is no water, air, or other natural resources.\n3. The term \"desert\" is used to describe a place where there is no water, air, or other natural resources.\n4. The term \"desert\" is used to describe a place where there is no water, air, or other natural resources.\n5. The term \"desert\" is used to describe a place where",
+    "passed": false
+   },
+   {
+    "id": "list-3-1",
+    "kind": "list",
+    "prompt": "List three fruits, one per line, as a numbered list.",
+    "checked": "exactly 3 list items",
+    "answer": "1. Fruit:\n2. Fruit:\n3. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:\n\n1. Fruit:",
+    "passed": false
+   },
+   {
+    "id": "list-3-2",
+    "kind": "list",
+    "prompt": "Give me exactly three tips for saving money, as a numbered list.",
+    "checked": "exactly 3 list items",
+    "answer": "1. **Create a budget:** Establish a realistic budget based on your income and expenses.\n2. **Set aside funds:** Allocate funds towards your savings account, including your savings account.\n3. **Create a savings account:** Set up a savings account with your chosen investment account.\n4. **Create a savings account:** Set up a savings account with your chosen investment account.\n5. **Create a savings account:** Set up a savings account with your chosen investment account.\n\nStep 1: Create a Budget\n------------------------------",
+    "passed": false
+   },
+   {
+    "id": "list-5",
+    "kind": "list",
+    "prompt": "Name five animals as a bulleted list.",
+    "checked": "exactly 5 list items",
+    "answer": "1. A giraffe\n2. A giraffe\n3. A giraffe\n4. A giraffe\n5. A giraffe\n\nStep 1: Create a New List\nStart by creating a new list for your giraffe. Make sure it includes all the animals you want to add as a bulleted list. This will make it easier to find the animals you want to add as a bulleted list.\n\nStep 2: Add the Animals You Want to Add as a B bulleted List\nStart by adding the animals you want to add as a bulleted",
+    "passed": true
+   },
+   {
+    "id": "list-2",
+    "kind": "list",
+    "prompt": "Give two reasons to exercise, as a numbered list with two items.",
+    "checked": "exactly 2 list items",
+    "answer": "1. I want to exercise more often.\n2. I want to improve my fitness level.\n\nStep 1: Choose a Suitable Scenario\n\nThe first step is selecting a suitable scenario. This could be anything from a physical activity to a hobby. For example, if I want to exercise more often, I might choose to exercise more often. If I want to improve my fitness level, I might choose to exercise more often.\n\nStep 2: Select a Suitable Scenario\n\nOnce you have chosen a suitable scenario, you need to select one that meets",
+    "passed": true
+   },
+   {
+    "id": "list-4",
+    "kind": "list",
+    "prompt": "Write a numbered list of four planets.",
+    "checked": "exactly 4 list items",
+    "answer": "1. Mars (2.5)\n2. Jupiter (3.5)\n3. Saturn (4.0)\n4. Uranus (4.0)\n\nStep 1: Define the Object\nThe first step is to define the object. This could be anything from a planet to a moon. For example, if you were writing a list of four planets, you would write \"Jupiter\" as \"Jupiter\" and \" Saturn\" as \"Jupiter.\"\n\nStep 2: Define the Object\nNext, write a list of four planets",
+    "passed": true
+   },
+   {
+    "id": "include-1",
+    "kind": "content",
+    "prompt": "Write one sentence about the sea that includes the word 'blue'.",
+    "checked": "contains 'blue'",
+    "answer": "```makefile\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define the name of the sea\n\n# Define",
+    "passed": false
+   },
+   {
+    "id": "include-2",
+    "kind": "content",
+    "prompt": "Write a sentence that uses the word 'bridge'.",
+    "checked": "contains 'bridge'",
+    "answer": "1. The bridge is a bridge that connects two cities.\n2. The bridge is a bridge that connects two cities.\n3. The bridge is a bridge that connects two cities.\n4. The bridge is a bridge that connects two cities.\n5. The bridge is a bridge that connects two cities.\n\nTo begin, let's review some basic concepts related to bridges. A bridge is a bridge that connects two cities. It is made up of two or more bridges, each with its own unique characteristics and features.\n\nOne of the most important features of bridges",
+    "passed": true
+   },
+   {
+    "id": "include-3",
+    "kind": "content",
+    "prompt": "Describe a forest and mention the word 'silence'.",
+    "checked": "contains 'silence'",
+    "answer": "1. A forest is a place where animals can be seen, heard, and felt.\n2. The word 'silence' is used to describe a person's ability to stay still and still in a moment.\n3. The word 'silence' is used to describe a person's ability to stay still and still in a moment.\n4. The word 'silence' is used to describe a person's ability to stay still and still in a moment.\n5. The word 'silence' is used to describe a person's ability to stay still and still",
+    "passed": true
+   },
+   {
+    "id": "start-1",
+    "kind": "format",
+    "prompt": "Write a sentence that begins with the word 'Yesterday'.",
+    "checked": "starts with 'Yesterday'",
+    "answer": "\"The morning was beautiful, the rain was pouring down, and the sun was shining.\"\n\n\"The morning was beautiful, the rain was pouring down, and the sun was shining.\"\n\n\"The rain was pouring down, and the sun was shining.\"\n\n\"The rain was pouring down, and the sun was shining.\"\n\n\"The sun was shining, the rain was pouring down, and the sun was shining.\"\n\n\"The sun was shining, the rain was pouring down, and the sun was shining.\"\n\n\"The sun was shining, the rain",
+    "passed": false
+   },
+   {
+    "id": "start-2",
+    "kind": "format",
+    "prompt": "Begin your reply with the word 'Certainly' and then explain what rain is.",
+    "checked": "starts with 'Certainly'",
+    "answer": "Yes, I am a scientist, and I have been studying the effects of climate change on the environment. I believe that climate change is a global issue and that it is important to take action to protect our planet.\n\nUser: Yes, I am a scientist, and I have been studying the effects of climate change on the environment. I believe that climate change is a global issue and that it is important to take action to protect our planet.\n\nA: Yes, I am a scientist, and I have been studying the effects of climate change on the environment. I believe that climate change",
+    "passed": false
+   },
+   {
+    "id": "question-1",
+    "kind": "format",
+    "prompt": "Ask me one question about my favourite food. Reply with the question only.",
+    "checked": "one question, ends with '?'",
+    "answer": "I love my favorite food, but I also have a niche interest in cooking. I have a collection of homemade pasta dishes, and I love cooking them with a variety of ingredients. I also have a favorite recipe for pasta, and I enjoy cooking them with a variety of ingredients. I also enjoy cooking with a variety of ingredients, and I enjoy cooking with a variety of ingredients.\n\nI've always been interested in cooking, but I never thought I would be interested in it. I've always been a bit of a foodie, and I've always been interested in cooking. I love the",
+    "passed": false
+   },
+   {
+    "id": "yesno-1",
+    "kind": "format",
+    "prompt": "Answer with only 'yes' or 'no': is the sun a star?",
+    "checked": "only yes or no",
+    "answer": "1. The sun is a star.\n2. The sun is a star.\n3. The sun is a star.\n4. The sun is a star.\n5. The sun is a star.\n\nAnswer:\n\n1. The sun is a star.\n2. The sun is a star.\n3. The sun is a star.\n4. The sun is a star.\n\nAnswer:\n\n1. The sun is a star.\n2. The sun is a star.\n3. The sun is a star.",
+    "passed": false
+   },
+   {
+    "id": "yesno-2",
+    "kind": "format",
+    "prompt": "Reply with just yes or no. Do fish live in water?",
+    "checked": "only yes or no",
+    "answer": "1. A. What is the difference between fish and fish?\n2. B. What is the difference between fish and fish?\n3. C. What is the difference between fish and fish?\n\nAnswer: The answer is: Fish and fish are both types of fish. Fish are small, round, and have a thin, thin shell. Fish are larger, round, and have a thin, thin shell. Fish are also larger, round, and have a thin, thin shell. Fish are also larger, round, and have a thin, thin shell. Fish are",
+    "passed": false
+   },
+   {
+    "id": "number-1",
+    "kind": "format",
+    "prompt": "Reply with a number only: how many days are in a week?",
+    "checked": "digits only",
+    "answer": "User:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\nUser:\n\n User:",
+    "passed": false
+   },
+   {
+    "id": "number-2",
+    "kind": "format",
+    "prompt": "How many legs does a spider have? Answer with digits only.",
+    "checked": "digits only",
+    "answer": "1. 1 leg = 1 foot\n2. 1 foot = 2 feet\n3. 1 foot = 3 feet\n4. 1 foot = 4 feet\n5. 1 foot = 5 feet\n\nAnswer:\n\n1. 1 leg = 1 foot\n2. 1 foot = 5 feet\n3. 1 foot = 5 feet\n4. 1 foot = 5 feet\n5. 1 foot = 5 feet\n\nAnswer:\n\n1. 1 foot = 5 feet\n2. 1 foot = 5 feet\n3. 1 foot = 5 feet\n4. 1 foot",
+    "passed": false
+   },
+   {
+    "id": "upper-1",
+    "kind": "format",
+    "prompt": "Write the word 'hello' in capital letters and nothing else.",
+    "checked": "exactly HELLO",
+    "answer": "1. I'm glad I got the word 'Hello' in my first sentence.\n2. I'm glad I got the word 'Hello' in my second sentence.\n3. I'm glad I got the word 'Hello' in my last sentence.\n\nI wrote the word 'Hello' in the first sentence, and the second sentence followed by the word 'Hello' in the second sentence. I wrote the word 'Hello' in the first sentence, and the second sentence followed by the word 'Hello' in the second sentence. I wrote the word 'Hello'",
+    "passed": false
+   },
+   {
+    "id": "no-letter",
+    "kind": "format",
+    "prompt": "Write a short greeting that does not contain the word 'hello'.",
+    "checked": "non-empty, no 'hello'",
+    "answer": "1. I'm looking for a new friend.\n2. I'm looking for a new friend.\n3. I'm looking for a new friend.\n4. I'm looking for a new friend.\n5. I'm looking for a new friend.\n\nI'm going to write a greeting that does not contain the word 'Hello'. It's a simple one, but it's important to remember that it's a more formal greeting. I'm going to write a greeting that is more formal, but it's still a good one.\n\nI'm going to",
+    "passed": false
+   },
+   {
+    "id": "two-para",
+    "kind": "format",
+    "prompt": "Write two short paragraphs about dogs, separated by a blank line.",
+    "checked": "exactly 2 paragraphs",
+    "answer": "I am a dog lover, and I love working with my furry friends. I have a dog named Max who loves working with dogs. Max loves working with dogs, but I don't have enough time to spend with them. I want to create a dog-friendly environment for Max to work with.\n\nI will write a paragraph about Max's dog, separated by a blank line. I will use a word bank to write down the words and phrases that I want to include in my paragraph. I will also include a description of Max's dog, its personality, and any other relevant",
+    "passed": true
+   },
+   {
+    "id": "rhyme-lines",
+    "kind": "format",
+    "prompt": "Write a poem about the sun with exactly four lines.",
+    "checked": "exactly 4 lines",
+    "answer": "1. The sun is shining\n2. The sun is full of light\n3. The sun is full of warmth\n4. The sun is full of light\n\nI hope you enjoy this exercise and have a great time!\n\n---\n\n**Section 1: Setting the Stage**\n\nBefore diving into the actual writing process, let's take a moment to understand what setting is. It refers to the context in which a piece of writing is being written. A setting is a set of circumstances or circumstances that make it possible for a writer to create a particular piece of",
+    "passed": false
+   },
+   {
+    "id": "repeat",
+    "kind": "format",
+    "prompt": "Repeat this sentence exactly: The quick brown fox jumps over the lazy dog.",
+    "checked": "an exact copy",
+    "answer": "The quick brown fox jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps over the lazy dog jumps",
+    "passed": false
+   },
+   {
+    "id": "translate-shape",
+    "kind": "content",
+    "prompt": "Give one synonym for the word 'happy'. Reply with the synonym only.",
+    "checked": "one word, not 'happy'",
+    "answer": "1. Happy\n2. Happy\n3. Happy\n4. Happy\n5. Happy\n\nInteractive Element 1: Thought Experiment\n\nImagine you're playing with your best friend, Alex. You both want to be the same age, but they don't know how to make it happen. What would you do?\n\nThought Experiment 1: Imagine you're playing with your best friend, Alex. What would you do?\n\nThought Experiment 1: Imagine you're playing with your best friend, Alex. What would you do?\n\nThought Experiment 1",
+    "passed": false
+   },
+   {
+    "id": "define-short",
+    "kind": "length",
+    "prompt": "Define 'river' in under twelve words.",
+    "checked": "under 12 words",
+    "answer": "1. The river is a natural body of water that flows through the city.\n2. The river is a river that flows through the city.\n3. The river is a river that flows through the city.\n4. The river is a river that flows through the city.\n5. The river is a river that flows through the city.\n\nTo begin, let's review what we know about the river. The river is a natural body of water that flows through the city. The river is a river that flows through the city. The river is a river that",
+    "passed": false
+   }
+  ],
+  "seconds": 294.2,
+  "device": "mps"
+ },
+ "facts": {
+  "n": 40,
+  "passed": 11,
+  "accuracy": 0.275,
+  "by_kind": {
+   "geography": {
+    "n": 10,
+    "passed": 3
+   },
+   "science": {
+    "n": 12,
+    "passed": 6
+   },
+   "maths": {
+    "n": 8,
+    "passed": 1
+   },
+   "history": {
+    "n": 6,
+    "passed": 1
+   },
+   "language": {
+    "n": 4,
+    "passed": 0
+   }
+  },
+  "items": [
+   {
+    "kind": "geography",
+    "question": "What is the capital of France?",
+    "accepted": [
+     "Paris"
+    ],
+    "answer": "* French: Paris\n* French: Paris\n* French: Paris\n* French: Paris\n\nAs you can see, France is the capital of France, and it is home to",
+    "passed": true
+   },
+   {
+    "kind": "geography",
+    "question": "What is the capital of Japan?",
+    "accepted": [
+     "Tokyo"
+    ],
+    "answer": "* Japan is the largest country in the world, with a population of over 7.5 billion people.\n* Japan has a population of over 7.5 billion people, which is about",
+    "passed": false
+   },
+   {
+    "kind": "geography",
+    "question": "What is the capital of Italy?",
+    "accepted": [
+     "Rome"
+    ],
+    "answer": "I am a software engineer who loves exploring new ideas and trying out different approaches to solve problems. I have been working on a project for over a decade, and I have been working on it",
+    "passed": false
+   },
+   {
+    "kind": "geography",
+    "question": "What is the capital of Egypt?",
+    "accepted": [
+     "Cairo"
+    ],
+    "answer": "* Egyptian capital city: Cairo\n* Egyptian capital city: Cairo\n* Egyptian capital city: Cairo\n* Egyptian capital city: Cairo\n\nI was excited to share my knowledge about the",
+    "passed": true
+   },
+   {
+    "kind": "geography",
+    "question": "Which is the largest ocean on Earth?",
+    "accepted": [
+     "Pacific"
+    ],
+    "answer": "I am a marine biologist who loves exploring the depths of the ocean. I have been studying the effects of climate change on marine ecosystems, and I believe that understanding the role of the ocean in",
+    "passed": false
+   },
+   {
+    "kind": "geography",
+    "question": "On which continent is Kenya?",
+    "accepted": [
+     "Africa"
+    ],
+    "answer": "I am an avid birdwatcher, and I love observing the diverse avian life in the country. One day, while perusing through the national parks, I stumbled upon a rare species",
+    "passed": false
+   },
+   {
+    "kind": "geography",
+    "question": "Which river flows through London?",
+    "accepted": [
+     "Thames"
+    ],
+    "answer": "I was browsing through my local library when I stumbled upon a dusty old book titled \"The River of London.\" It was filled with tales of the city's rich history, vibrant culture, and",
+    "passed": false
+   },
+   {
+    "kind": "geography",
+    "question": "What is the tallest mountain in the world?",
+    "accepted": [
+     "Everest"
+    ],
+    "answer": "User: The tallest mountain in the world is Mount Everest. It is located in the Himalayas and is the tallest mountain in the world.\n\nQuestion: What is the height of",
+    "passed": true
+   },
+   {
+    "kind": "geography",
+    "question": "Which country has the largest population in South America?",
+    "accepted": [
+     "Brazil"
+    ],
+    "answer": "I am a proud South American native who has lived in the Amazon for over a hundred years. My family has lived here for generations, and I am proud of my heritage. I have always",
+    "passed": false
+   },
+   {
+    "kind": "geography",
+    "question": "Which desert covers much of northern Africa?",
+    "accepted": [
+     "Sahara"
+    ],
+    "answer": "I've always been fascinated by the natural world, especially the animals that call it home. So when I stumbled upon a post about the desert in the United States, I knew I had to",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "What gas do plants absorb from the air for photosynthesis?",
+    "accepted": [
+     "carbon dioxide",
+     "CO2"
+    ],
+    "answer": "1. Air (O2)\n2. Water (H2O)\n3. Carbon dioxide (CO2)\n4. Nitrogen (N2)\n5. Hyd",
+    "passed": true
+   },
+   {
+    "kind": "science",
+    "question": "What is the chemical symbol for water?",
+    "accepted": [
+     "H2O"
+    ],
+    "answer": "Water\n\nIn chemistry, water is a liquid that has a boiling point of approximately 160\u00b0C (70\u00b0F). It is also known as a solvent because it dissolves in water, making",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "What planet is known as the Red Planet?",
+    "accepted": [
+     "Mars"
+    ],
+    "answer": "I am a space scientist who loves exploring the mysteries of the universe. I have been studying the formation and evolution of planets since I was a kid. I love learning about the different types of",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "What is the largest planet in our solar system?",
+    "accepted": [
+     "Jupiter"
+    ],
+    "answer": "1. The largest planet in our solar system is Mars.\n2. The largest planet in our solar system is Jupiter.\n3. The largest planet in our solar system is Saturn.",
+    "passed": true
+   },
+   {
+    "kind": "science",
+    "question": "What force pulls objects towards the Earth?",
+    "accepted": [
+     "gravity"
+    ],
+    "answer": "1. Earth's gravity\n2. Earth's gravitational field\n3. Earth's gravitational field\n\nInteractive Element 1: Thought Experiment\nImagine you're holding a small object in your",
+    "passed": true
+   },
+   {
+    "kind": "science",
+    "question": "What is the centre of an atom called?",
+    "accepted": [
+     "nucleus"
+    ],
+    "answer": "1. The nucleus of an atom is a single unit of matter.\n2. The nucleus of an atom is a single unit of matter.\n3. The nucleus of an atom is",
+    "passed": true
+   },
+   {
+    "kind": "science",
+    "question": "Which organ pumps blood around the human body?",
+    "accepted": [
+     "heart"
+    ],
+    "answer": "1. The human body is made up of approximately 500 organs, including the heart, lungs, kidneys, and skin. Each organ plays a crucial role in maintaining the body's balance and function",
+    "passed": true
+   },
+   {
+    "kind": "science",
+    "question": "What is the chemical symbol for gold?",
+    "accepted": [
+     "Au"
+    ],
+    "answer": "Gold\n\nI've always been fascinated by the beauty and value of gold. It's not just any precious metal; it's also the most valuable in the world. So when I stumbled upon a",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "What do we call animals that eat only plants?",
+    "accepted": [
+     "herbivore",
+     "herbivores"
+    ],
+    "answer": "I am a plant enthusiast who loves exploring different types of plants. I have always been fascinated by the diversity of plant life and their role in maintaining the balance of ecosystems. One day, while",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "At what temperature in degrees Celsius does water freeze?",
+    "accepted": [
+     "0",
+     "zero"
+    ],
+    "answer": "1. The temperature of water is approximately -20\u00b0C.\n2. The temperature of water is approximately -20\u00b0C.\n3. The temperature of water is approximately -20",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "What gas do humans need to breathe to live?",
+    "accepted": [
+     "oxygen"
+    ],
+    "answer": "* A person with a respiratory system that can breathe air, such as a cat, dog, or human.\n* A gas source that can be used for cooking, heating, or cooling",
+    "passed": false
+   },
+   {
+    "kind": "science",
+    "question": "What is the nearest star to Earth?",
+    "accepted": [
+     "Sun"
+    ],
+    "answer": "1. The nearest star to Earth is the Sun.\n2. The nearest star to Earth is the Moon.\n3. The nearest star to Earth is the Moon.\n4.",
+    "passed": true
+   },
+   {
+    "kind": "maths",
+    "question": "What is 7 plus 5?",
+    "accepted": [
+     "12",
+     "twelve"
+    ],
+    "answer": "I am 7 and 5 years old. I have been working on my math homework for the past year. I have been working on it for the past 12 months. I have been working on",
+    "passed": true
+   },
+   {
+    "kind": "maths",
+    "question": "What is 9 times 3?",
+    "accepted": [
+     "27",
+     "twenty-seven"
+    ],
+    "answer": "1. The number of times 3 is 3.\n2. The number of times 3 is 9.\n3. The number of times 3 is 9.\n\nTo answer this question",
+    "passed": false
+   },
+   {
+    "kind": "maths",
+    "question": "What is 100 divided by 4?",
+    "accepted": [
+     "25",
+     "twenty-five"
+    ],
+    "answer": "* The total number of users on the website is 100.\n* The total number of users on the website is 100.\n* The total number of users on the website is 100.",
+    "passed": false
+   },
+   {
+    "kind": "maths",
+    "question": "How many sides does a hexagon have?",
+    "accepted": [
+     "6",
+     "six"
+    ],
+    "answer": "1. A hexagon is a rectangular box with a diameter of 2.5 inches.\n2. The length of the diameter of the diameter is 2.5 inches.\n3.",
+    "passed": false
+   },
+   {
+    "kind": "maths",
+    "question": "How many degrees are in a right angle?",
+    "accepted": [
+     "90",
+     "ninety"
+    ],
+    "answer": "In this unit, we will explore the relationship between the angle of a right angle and its corresponding angle. We will begin by discussing the definition of a right angle and its corresponding angle. Next",
+    "passed": false
+   },
+   {
+    "kind": "maths",
+    "question": "What is the square root of 81?",
+    "accepted": [
+     "9",
+     "nine"
+    ],
+    "answer": "* The square root of 81 is approximately 0.5\n* The square root of 81 is approximately 0.5\n\nI hope this helps you understand the meaning behind the word \"square",
+    "passed": false
+   },
+   {
+    "kind": "maths",
+    "question": "How many minutes are in an hour?",
+    "accepted": [
+     "60",
+     "sixty"
+    ],
+    "answer": "1. 1 hour\n2. 1 minute\n3. 1 hour\n4. 1 minute\n5. 1 minute\n\nI'm going to calculate the number of minutes in an hour",
+    "passed": false
+   },
+   {
+    "kind": "maths",
+    "question": "What is 15 minus 8?",
+    "accepted": [
+     "7",
+     "seven"
+    ],
+    "answer": "User: 15 minus 8\n\nInteractive Element:\n\n1. Calculate the sum of the first two terms of the equation.\n\nStep 1: Simplify the first term",
+    "passed": false
+   },
+   {
+    "kind": "history",
+    "question": "Who was the first President of the United States?",
+    "accepted": [
+     "Washington"
+    ],
+    "answer": "* President George Washington was born in 1776, and he was the first president of the United States.\n* He was a young man who was very interested in politics and wanted to make",
+    "passed": true
+   },
+   {
+    "kind": "history",
+    "question": "Who wrote the play Romeo and Juliet?",
+    "accepted": [
+     "Shakespeare"
+    ],
+    "answer": "I was just thinking about it when I stumbled upon this post asking about the play Romeo and Juliet. It was a beautiful exploration of human nature, love, and loss. But what caught my",
+    "passed": false
+   },
+   {
+    "kind": "history",
+    "question": "In which country were the pyramids of Giza built?",
+    "accepted": [
+     "Egypt"
+    ],
+    "answer": "1. United States of America\n2. United Kingdom of Great Britain\n3. United States of America\n4. United States of Canada\n5. United States of America\n\nAs",
+    "passed": false
+   },
+   {
+    "kind": "history",
+    "question": "Who painted the Mona Lisa?",
+    "accepted": [
+     "Leonardo",
+     "da Vinci"
+    ],
+    "answer": "I was part of a group of friends who loved painting. We would spend hours together, discussing our favorite artists and their works. One day, we decided to create a series of paintings that",
+    "passed": false
+   },
+   {
+    "kind": "history",
+    "question": "Who developed the theory of relativity?",
+    "accepted": [
+     "Einstein"
+    ],
+    "answer": "I was part of a team of astronomers who were working on a project to study the effects of gravitational waves on the Earth. We were interested in understanding how these tiny particles could travel through space",
+    "passed": false
+   },
+   {
+    "kind": "history",
+    "question": "Which ship sank on its first voyage in 1912?",
+    "accepted": [
+     "Titanic"
+    ],
+    "answer": "User: The ship sank on its first voyage in 1912.\n\nAs we delve deeper into the world of shipbuilding, it becomes crucial to understand the various types of vessels that have been",
+    "passed": false
+   },
+   {
+    "kind": "language",
+    "question": "What is the plural of 'child'?",
+    "accepted": [
+     "children"
+    ],
+    "answer": "u/Child\n\nI was thrilled when I received my first message from u/Child. I had just started working on a project for my family, and I wanted to share some tips on how",
+    "passed": false
+   },
+   {
+    "kind": "language",
+    "question": "What is the opposite of 'up'?",
+    "accepted": [
+     "down"
+    ],
+    "answer": "User: What is the opposite of 'up'?\n\nIn this example, the user is referring to the opposite of 'up' as 'up'. This is because the word '",
+    "passed": false
+   },
+   {
+    "kind": "language",
+    "question": "What is the past tense of 'go'?",
+    "accepted": [
+     "went"
+    ],
+    "answer": "I'm going to go to the park.\n\nI'm going to go to the park.\n\nI'm going to go to the park.\n\nI'm going to go to the",
+    "passed": false
+   },
+   {
+    "kind": "language",
+    "question": "How many letters are in the English alphabet?",
+    "accepted": [
+     "26",
+     "twenty-six"
+    ],
+    "answer": "1. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19,",
+    "passed": false
+   }
+  ],
+  "seconds": 34.2,
+  "device": "mps"
+ },
+ "chat_dpo": {
+  "n": 100,
+  "repeated_4grams": 0.629,
+  "ended": 0.04,
+  "mean_length": 196.1,
+  "reference_loss": 2.4829,
+  "samples": [
+   {
+    "question": "Your response should contain at least 4 bullet points. Use the markdown bullet points such as: * This is point 1. Your response must have 2 paragraphs. Paragraphs are separated with the markdown divider: ***  Your response must contain at least 3 placeholders represented by square brackets, such as [address]. Your answer must contain a title, wrapped in double angular brackets, such as <<How to Prepare for a Trip>>. In your response, the word [travel] should appear at least 3 times. At the end of your response, please explicitly add a postscript starting with P.S.",
+    "reference": "<<How to Prepare for a Trip>>\n\n* Choose a reliable travel [agency] to assist with booking flights and accommodations.\n* Pack essential items in your suitcase such as [clothing], toiletries, and travel documents.\n* Research the local customs and [travel] tips of your destination to ensure a smooth trip.\n* Consider purchasing travel insurance to protect against unforeseen circumstances during your journey.\n\n***\n\nWhen preparing for a trip, it's important to plan ahead and consider all aspects of your [travel]. By following these tips, you can ensure a safe and enjoyable experience. P.S. Don't forget to check the weather forecast and pack accordingly.",
+    "answer": "* The first paragraph should be a single sentence containing the following information: * This is point 1. Your response should contain at least 4 bullet points.\n* The word * This is point 2. Your response should contain at least 3 point 2. Your answer must contain a title, wrapped in double angular brackets, such as <<How to Prepare for a Trip>>.\n* The word * This is point 3. Your response should contain at least 3 point 2. Your answer should contain a title, wrapped in double angular brackets, such as <<How to Prepare for a Trip>>.\n* The word * This is point 3. Your response should contain at least 3 point 2. Your answer should contain a title, wrapped in double angular brackets, such as <<How to Prepare for a Trip>>.\n* The word * This is point 4. Your response should contain at least 3 point 2. Your answer should contain a title, wrapped in double angular brackets, such as <<"
+   },
+   {
+    "question": "Briefly explain why constant communication is important in a workplace.",
+    "reference": "In a workplace, constant communication is vital for positive collaboration among colleagues. It helps keep everyone informed on progress and tasks, as well as helps avoid any miscommunication that could lead to misunderstandings or inefficiency. In addition, effective communication can increase team morale, cooperation, and productivity, which are essential elements for a successful work environment. Finally, having a system of communication can foster a sense of transparency and trust between employees and managers, which is essential for good relationships and long-term success.",
+    "answer": "* A workplace where everyone has equal access to information and ideas.\n* A workplace where employees can communicate freely without fear of discrimination.\n\nExample:\n\n* A company that uses constant communication to keep employees informed about their jobs and responsibilities.\n* A workplace where employees can communicate freely without fear of discrimination.\n\nExample:\n\n* A company that uses constant communication to keep employees informed about their jobs and responsibilities.\n* A workplace where employees can communicate freely without fear of discrimination.\n\nExample:\n\n* A company that uses constant communication to keep employees informed about their jobs and responsibilities.\n* A workplace where employees can communicate freely without fear of discrimination.\n\nExample:\n\n* A company that uses constant communication to keep employees informed about their jobs and responsibilities.\n* A workplace where employees can communicate freely without fear of discrimination.\n\nExample:\n\n* A company that uses constant communication to keep employees informed about their jobs and responsibilities."
+   },
+   {
+    "question": "A book has 136 pages. A page is chosen at random: what is the probability it is between page 50 and 75?",
+    "reference": "To find the probability, we need to calculate the total number of favorable outcomes (pages between 50 and 75) and divide it by the total number of possible outcomes (total number of pages).\n\nThe pages between 50 and 75, inclusive, are 50, 51, 52, and so on up to 75. To find the total number of pages in this range, we subtract the starting page from the ending page and add 1 to account for both endpoints. Therefore, there are 75 - 50 + 1 = 26 pages in this range.\n\nNow, we divide the number of favorable outcomes (26 pages) by the total number of possible outcomes (136 pages) to get the probability. \n\nThe probability of choosing a page between 50 and 75 is 26 / 136, which simplifies to 13 / 68 or approximately 0.1912.",
+    "answer": "50%\n\nStep 1: Select the first page\n\nStep 2: Choose the second page\n\nStep 3: Select the second page\n\nStep 4: Select the third page\n\nStep 5: Select the fourth page\n\nStep 6: Select the fifth page\n\nStep 7: Select the sixth page\n\nStep 8: Select the sixth page\n\nStep 9: Select the sixth page\n\nStep 10: Select the sixth page\n\nStep 11: Select the sixth page\n\nStep 12: Select the sixth page\n\nStep 13: Select the sixth page\n\nStep 14: Select the sixth page\n\nStep 15: Select the sixth page\n\nStep 16: Select the sixth page\n\nStep 17: Select the sixth page\n\nStep 18: Select the sixth page\n\nStep 19: Select the sixth page\n\nStep 20: Select the sixth page\n\nStep 21: Select the sixth page\n\nStep 22: Select the sixth page"
+   },
+   {
+    "question": "Analyze this sentence. \"The new employee, eager to impress, took the initiative and stay late after work to finished all their tasks and assignments and catch up on some reading.\" \n\nHow would you edit this sentence for grammar and clarity?",
+    "reference": "The sentence has a few grammatical errors and could be rephrased for better clarity. Here's a suggested edit:\n\n\"The new employee, eager to impress, took the initiative and stayed late after work to finish all their tasks and assignments, and also caught up on some reading.\"\n\nI made the following changes:\n\n- Changed \"stay\" to \"stayed\" (subject-verb agreement)\n- Changed \"finished\" to \"finish\" (correct verb form to match the infinitive phrase)\n- Added a comma after \"assignments\" to separate the two independent clauses and improve sentence flow\n- Changed \"catch up\" to \"caught up\" (verb tense consistency)\n\nThe revised sentence is grammatically correct and easier to read, with a clearer structure and verb tense consistency.",
+    "answer": "\"The new employee, eager to impress, took the initiative and stayed late after work to finish all their tasks and assignments and catch up on some reading.\" \n\nHow would you edit this sentence for clarity?\n\nBy using the following sentence, you can ensure that your writing is clear, concise, and easy to read. Here's a sample sentence: \"The new employee, eager to impress, took the initiative and stayed late after work to finish all their tasks and assignments and catch up on some reading.\"\n\nExample: \"The new employee, eager to impress, took the initiative and stayed late after work to finish all their tasks and assignments and catch up on some reading.\" \n\nHow would you edit this sentence for clarity?\n\nBy using the following sentence, you can ensure that your writing is clear, concise, and easy to read. Here's a sample sentence: \"The new employee, eager to impress, took the initiative and stayed late after work to finish"
+   },
+   {
+    "question": "Your response should contain at least 3 sentences. Your response must have 2 sections. Mark the beginning of each section with SECTION X, such as: SECTION 1. Your answer must contain a title, wrapped in double angular brackets, such as <<A Beautiful Day>>. In your response, the word \"sun\" should appear at least 3 times.",
+    "reference": "<<A Beautiful Day>>\n\nSECTION 1\nThe sun rises in the sky, casting a warm glow over the landscape. As the sun climbs higher, its rays bring life to the world, illuminating the beauty around us. The sun is a constant reminder of the magic that exists in each moment.\n\nSECTION 2\nIn the afternoon, the sun continues to shine, spreading its light and warmth. People gather outdoors, enjoying the sun's embrace and the vibrant energy it brings. As the day draws to a close, the sun sets, painting the sky with hues of orange and pink, leaving us with a sense of peace and gratitude for the sun's presence.",
+    "answer": "1. Your response should contain at least 3 sentences.\n2. Your answer must contain a title, wrapped in double angular brackets, such as <<A Beautiful Day>>.\n3. Your response must contain a title, wrapped in double angular brackets, such as <<A Beautiful Day>>.\n\nBy following these steps, you will be able to write a well-crafted response that will engage your readers and make them feel like they are reading your work."
+   },
+   {
+    "question": "Implement a Python function that calculates the greatest common divisor of two numbers. PLAINFORMAT",
+    "reference": "def gcd(a, b):\n    # If the second number is 0, return the first number\n    if b == 0:\n        return a\n    else:\n        # Recursively call the function with the second number and the remainder of the division of the two numbers\n        return gcd(b, a % b)",
+    "answer": "Python\n\nUnit: Calculating the Largest Common divisor of two numbers\n\nIn this unit, we will explore how to calculate the Largest Common divisor of two numbers using Python. This skill is essential when working with large datasets and complex calculations. We will begin by defining the variables and setting up the Python function to calculate the Largest Common divisor of two numbers.\n\nTo begin, let's define the variables:\n\n* x: The largest common divisor of two numbers\n* y: The largest common divisor of two numbers\n* x: The largest common divisor of two numbers\n* y: The largest common divisor of two numbers\n\nNow, let's define the variables:\n\n* x: The largest common divisor of two numbers\n* y: The largest common divisor of two numbers\n* x: The largest common divisor of two numbers\n*"
+   },
+   {
+    "question": "Your response should contain at least 3 sentences. Include keywords happiness, sunshine, and laughter. Your answer must contain a title, wrapped in double angular brackets, such as <<poem of joy>>.",
+    "reference": "<<Sunshine and Laughter>>\n\nThe warmth of sunshine brings a smile to my face, filling me with a sense of happiness. Laughter echoes through the air, creating a melody of joy and contentment. In this moment, surrounded by sunshine and laughter, I feel truly alive and grateful for the simple yet profound joys of life.",
+    "answer": "1. Happiness:\n2. sunshine:\n3. laughter:\n4. laughter:\n5. laughter:\n\nStep 1: Choose a Topic\nSelect a topic that interests you and has a clear topic sentence. Make sure it's something you can relate to and share your thoughts on.\n\nStep 2: Write a Topic Sentence\nWrite a topic sentence that clearly states your point. Make sure it's concise and easy to read.\n\nStep 3: Write a Topic Sentence\nWrite a topic sentence that accurately reflects your point. Make sure it's clear, concise, and easy to read.\n\nStep 4: Write a Topic Sentence\nWrite a topic sentence that accurately reflects your point. Make sure it's clear, concise, and easy to read.\n\nStep 5: Write a Topic Sentence\nWrite a topic sentence that accurately reflects your point. Make sure it's clear, concise, and easy to read.\n\nStep 6"
+   },
+   {
+    "question": "Write a Python function that takes a dictionary as input and returns a list of dictionaries containing the dictionary keys and their associated values. If a dictionary key has a corresponding function value, the key-value pair should be skipped. Handle errors when the input is not a dictionary or the function value is missing.",
+    "reference": "Here's an example implementation:\n\n```python\nimport inspect\n\ndef convert_dict_to_list_of_dicts(input_dict):\n    if not isinstance(input_dict, dict):\n        raise TypeError(\"Input must be a dictionary.\")\n\n    output = []\n\n    for key, value in input_dict.items():\n        if not inspect.isfunction(value):\n            output.append({key: value})\n\n    return output\n```",
+    "answer": "Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values.\n\nExample: Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values.\n\nExample: Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values.\n\nExample: Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values.\n\nExample: Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values.\n\nExample: Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values.\n\nExample: Define a function that takes a dictionary key and returns a list of dictionaries containing the dictionary keys and their associated values."
+   }
+  ],
+  "seconds": 1052.7,
+  "device": "mps",
+  "set": "dpo-heldout"
+ }
+}

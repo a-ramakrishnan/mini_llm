@@ -1,0 +1,83 @@
+[
+ {
+  "key": "mini-fineweb-edu",
+  "title": "Mini FineWeb-Edu",
+  "source": "BaoMinhTran/mini-fineweb-edu (small), validation split",
+  "kind": "in the training distribution",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "baominhtran__mini-fineweb-edu-small"
+ },
+ {
+  "key": "cosmopedia-stories",
+  "title": "Cosmopedia stories",
+  "source": "HuggingFaceTB/cosmopedia (stories), held-out documents",
+  "kind": "in the training distribution",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "huggingfacetb__cosmopedia-stories-first300000"
+ },
+ {
+  "key": "cosmopedia-wikihow",
+  "title": "Cosmopedia WikiHow",
+  "source": "HuggingFaceTB/cosmopedia (wikihow), held-out documents",
+  "kind": "in the training distribution",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "huggingfacetb__cosmopedia-wikihow"
+ },
+ {
+  "key": "cosmopedia-openstax",
+  "title": "Cosmopedia OpenStax",
+  "source": "HuggingFaceTB/cosmopedia (openstax), held-out documents",
+  "kind": "in the training distribution",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "huggingfacetb__cosmopedia-openstax"
+ },
+ {
+  "key": "cosmopedia-stanford",
+  "title": "Cosmopedia Stanford",
+  "source": "HuggingFaceTB/cosmopedia (stanford), held-out documents",
+  "kind": "in the training distribution",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "huggingfacetb__cosmopedia-stanford-first100000"
+ },
+ {
+  "key": "cosmopedia-khanacademy",
+  "title": "Cosmopedia Khan Academy",
+  "source": "HuggingFaceTB/cosmopedia (khanacademy), held-out documents",
+  "kind": "in the training distribution",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "huggingfacetb__cosmopedia-khanacademy"
+ },
+ {
+  "key": "tinystories",
+  "title": "TinyStories",
+  "source": "roneneldan/TinyStories, validation split",
+  "kind": "not trained on",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "roneneldan__tinystories"
+ },
+ {
+  "key": "wikitext-2",
+  "title": "WikiText-2",
+  "source": "Salesforce/wikitext (wikitext-2-raw-v1), validation split",
+  "kind": "not trained on",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "salesforce__wikitext-wikitext-2-raw-v1"
+ },
+ {
+  "key": "tiny-shakespeare",
+  "title": "Tiny Shakespeare",
+  "source": "karpathy/char-rnn tinyshakespeare input.txt, held-out lines",
+  "kind": "not trained on",
+  "windows": 64,
+  "context": 256,
+  "source_folder": "url-raw.githubusercontent.com-input.txt-4c649141"
+ }
+]
