@@ -5,9 +5,30 @@ pretraining, continued pretraining, instruction tuning and preference tuning, th
 inference code that serves it. Plain PyTorch, trained on a Mac and on Colab.
 
 The model was built in [tinystories-ARM-model](https://github.com/a-ramakrishnan/tinystories-ARM-model), where 57
-models were trained and compared. This repo is the distilled result: one model, one pipeline & one set up to learn from.
+models were trained and compared. This repo is the distilled result: one model, one pipeline & one set up to learn from,
+laid out day by day, Day 0 to Day 14.
 
-**Status: under construction.** [The plan](docs/PLAN.md) says what is being built and in what order.
+**Status: under construction.** [The plan](docs/PLAN.md) has every day in full.
+
+## The days
+
+| Day | Do this | Status |
+|---|---|---|
+| 0 | Set up, get the weights, make the model write | In progress |
+| 1 | Read the model: every layer, every parameter, one forward pass by hand | In progress |
+| 2 | Turn text into training batches: datasets, mixing, tokens, windows | Planned |
+| 3 | Pretrain: the training loop, and a small model trained on your own machine | Planned |
+| 4 | Scale the data five times: resume, re-warm, keep the held-out set held out | Planned |
+| 5 | Instruction tuning: a chat format, a loss mask, a model that answers | Planned |
+| 6 | Preference tuning: DPO against repetition | Planned |
+| 7 | Evals: held-out loss, generation quality, chat quality | Planned |
+| 8 | Benchmarks: five standard tasks, reference models, the report | Planned |
+| 9 | Inference by hand: prefill, decode, the KV cache | Planned |
+| 10 | Sampling: temperature, top-k, top-p, penalties, search, stopping | Planned |
+| 11 | Faster and smaller: batching, quantization, speculative decoding | Planned |
+| 12 | A server: an OpenAI-compatible API, streaming, request state, a scheduler | Planned |
+| 13 | A serving engine: continuous batching, KV-cache management, prefix caching, load tests | Planned |
+| 14 | Ship: the front end, the weights on Hugging Face, the write-up | Planned |
 
 ## The model
 
