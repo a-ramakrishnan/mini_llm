@@ -5,8 +5,8 @@ pretraining, continued pretraining, instruction tuning and preference tuning, th
 inference code that serves it. Plain PyTorch, trained on a Mac and on Colab.
 
 The model was built in [tinystories-ARM-model](https://github.com/a-ramakrishnan/tinystories-ARM-model), where 57
-models were trained and compared. This repo is the distilled result: one model, one pipeline, set up to learn from,
-in the spirit of [MiniMind](https://github.com/jingyaogong/minimind), laid out day by day, Day 0 to Day 14.
+models were trained and compared. This repo is the distilled result: one model, one pipeline & one set up to learn from,
+laid out day by day, Day 0 to Day 14.
 
 **Status: under construction.** [The plan](docs/PLAN.md) has every day in full.
 
