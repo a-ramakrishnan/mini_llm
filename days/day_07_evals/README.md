@@ -174,4 +174,4 @@ and the front end can say it plainly.
   Cosmopedia, TinyStories, WikiText, Tiny Shakespeare). They are listed in `heldout.json`; the licences are to be
   checked before the launch.
 
-Previous: [Day 6, preference tuning](../day_06_preference_tuning/). Next: Day 8, benchmarks.
+Previous: [Day 6, preference tuning](../day_06_preference_tuning/). Next: [Day 8, benchmarks](../day_08_benchmarks/).

@@ -1,0 +1,43 @@
+{
+ "model": "mini-llm-chat",
+ "context": 512,
+ "device": "cpu",
+ "harness": "lm-evaluation-harness style, zero-shot",
+ "results": {
+  "hellaswag": {
+   "acc": 0.2893845847440749,
+   "acc_norm": 0.30083648675562635,
+   "n": 10042,
+   "seconds": 1585.7,
+   "stderr": 0.0045766165166535085
+  },
+  "lambada": {
+   "acc": 0.1288569765185329,
+   "ppl": 4666.8185170950055,
+   "n": 5153,
+   "seconds": 396.4,
+   "stderr": 0.004667331292458676
+  },
+  "arc_easy": {
+   "acc": 0.4196127946127946,
+   "acc_norm": 0.3859427609427609,
+   "n": 2376,
+   "seconds": 121.7,
+   "stderr": 0.010124184657906462
+  },
+  "piqa": {
+   "acc": 0.5897714907508161,
+   "acc_norm": 0.5903155603917302,
+   "n": 1838,
+   "seconds": 53.4,
+   "stderr": 0.011473133670354954
+  },
+  "winogrande": {
+   "acc": 0.47908445146014206,
+   "n": 1267,
+   "seconds": 22.3,
+   "stderr": 0.014034643680105567
+  }
+ },
+ "average": 38.4
+}

@@ -48,7 +48,7 @@ pipeline, every stage a script); the day-by-day shape, and the weight given to i
 | 5 | [Instruction tuning: a chat format, a loss mask, a model that answers](#day-5-instruction-tuning) | [Available](../days/day_05_instruction_tuning/); notebook not yet run on Colab |
 | 6 | [Preference tuning: DPO against repetition](#day-6-preference-tuning) | [Available](../days/day_06_preference_tuning/); notebook not yet run on Colab |
 | 7 | [Evals: held-out loss, generation quality, chat quality](#day-7-evals) | [Available](../days/day_07_evals/), front-end page to come |
-| 8 | [Benchmarks: five standard tasks, reference models, the report](#day-8-benchmarks) | Planned |
+| 8 | [Benchmarks: five standard tasks, reference models, the report](#day-8-benchmarks) | [Available](../days/day_08_benchmarks/), front-end page to come |
 | 9 | [Inference by hand: prefill, decode, the KV cache](#day-9-inference-by-hand) | Planned |
 | 10 | [Sampling: temperature, top-k, top-p, penalties, search, stopping](#day-10-sampling) | Planned |
 | 11 | [Measure it: time to first token, latency, throughput, memory, and where the time goes](#day-11-measure-it) | Planned |

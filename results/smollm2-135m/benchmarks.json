@@ -1,0 +1,50 @@
+{
+ "model": "smollm2-135m",
+ "context": 1024,
+ "device": "cpu",
+ "harness": "lm-evaluation-harness style, zero-shot",
+ "results": {
+  "hellaswag": {
+   "acc": 0.3552081258713404,
+   "acc_norm": 0.4311890061740689,
+   "n": 10042,
+   "seconds": 2421.4,
+   "stderr": 0.004942056680279796
+  },
+  "lambada": {
+   "acc": 0.4288763826896953,
+   "ppl": 19.259965542264418,
+   "n": 5153,
+   "seconds": 410.8,
+   "stderr": 0.006894472667241748
+  },
+  "arc_easy": {
+   "acc": 0.6443602693602694,
+   "acc_norm": 0.5858585858585859,
+   "n": 2376,
+   "seconds": 326.3,
+   "stderr": 0.009820787079002736
+  },
+  "piqa": {
+   "acc": 0.6844396082698585,
+   "acc_norm": 0.6849836779107725,
+   "n": 1838,
+   "seconds": 133.8,
+   "stderr": 0.010840169094452982
+  },
+  "winogrande": {
+   "acc": 0.5295974743488555,
+   "n": 1267,
+   "seconds": 64.1,
+   "stderr": 0.0140223068851227
+  }
+ },
+ "reference": {
+  "hub": "HuggingFaceTB/SmolLM2-135M",
+  "title": "SmolLM2-135M",
+  "params": "135M",
+  "chat": false,
+  "about": "2024; a modern small model trained on far more data (about 2 trillion tokens)."
+ },
+ "average": 54.4
+}
